@@ -41,7 +41,7 @@
     .progress-bar-bg { background: #e2f1f7; height: 10px; border-radius: 999px; overflow: hidden; }
     .progress-bar-fill { background: linear-gradient(90deg, #087f7b, #146bb2); height: 100%; width: 0%; transition: width 0.4s ease; }
 
-    /* Gaya Interaktif Bab 2 */
+    /* Gaya Interaktif */
     .term, .definition { width:100%; text-align:left; border:2px solid #dceaf6; border-radius:0.75rem; background:white; padding:0.6rem 0.85rem; font-size:0.875rem; transition:all 0.15s; cursor:pointer; }
     .term:hover, .definition:hover { border-color:#146bb2; }
     .term.selected { background:#eaf5ff; border-color:#146bb2; font-weight:bold; }
@@ -50,6 +50,8 @@
     .flow-step { border:2px solid #cfe3ec; background:white; padding:0.6rem; border-radius:0.75rem; text-align:center; flex:1; min-width:100px; font-size:0.8rem; font-weight:bold; }
     .flow-step.current { border-color:#146bb2; background:#eaf5ff; box-shadow:0 0 0 3px rgba(20,107,178,.25); }
     .flow-step.done { border-color:#16836b; background:#e1f6e9; color:#145b38; }
+    .zone-choice { border: 1px solid #cbd5e1; background: #fff; color: #1e293b; transition: .15s; }
+    .zone-choice:hover, .zone-choice.selected { background: #146bb2; color: #fff; border-color: #146bb2; }
 
     @media print {
       header, nav, .no-print, .role-button, button, .access-overlay { display: none !important; }
@@ -67,14 +69,14 @@
           <div class="flex-1">
             <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-emerald-700 shadow-sm">
               <i data-lucide="globe-2" class="w-4 h-4"></i>
-              <span>Bab Interaktif • Geografi SMA Kelas 11</span>
+              <span>Jelajah Geografi • SMA Kelas XI</span>
             </div>
             <h1 class="mt-3 font-extrabold text-3xl text-slate-900 tracking-tight">Media Pembelajaran Geografi SMA Kelas 11</h1>
-            <p class="mt-2 text-slate-600 max-w-3xl leading-relaxed">Belajar posisi strategis Indonesia, potensi sumber daya alam, keragaman hayati, dinamika kependudukan, dan mitigasi bencana melalui kegiatan interaktif.</p>
+            <p class="mt-2 text-slate-600 max-w-3xl leading-relaxed">Kenali bumi, pahami kehidupan. Jelajahi topik penting geografi—Biosfer &amp; Keanekaragaman Hayati, Sumber Daya Alam &amp; Lingkungan, serta Dinamika Kependudukan—melalui materi ringkas, aktivitas interaktif, tugas praktik, dan kuis evaluasi.</p>
           </div>
           
           <aside class="card rounded-3xl border border-sky-100 bg-white p-5 shadow-lg min-w-[260px]">
-            <p class="text-sm font-bold text-slate-500">Absen & Profil Siswa</p>
+            <p class="text-sm font-bold text-slate-500">Absen &amp; Profil Siswa</p>
             <div class="flex items-center justify-between mt-1">
               <p id="student-identity-display" class="text-lg font-extrabold text-sky-900">Belum Absen</p>
               <button id="btn-edit-student" class="text-xs bg-sky-100 text-sky-700 px-2.5 py-1 rounded-lg font-bold hover:bg-sky-200">Absen / Ubah</button>
@@ -116,599 +118,251 @@
         <!-- Search Bar -->
         <div class="mb-5 flex items-center rounded-2xl border border-sky-200 bg-white px-4 py-2.5 shadow-sm no-print">
           <i data-lucide="search" class="w-5 h-5 text-slate-400 mr-2"></i>
-          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: poros maritim, wallace, piramida penduduk, tsunami, sda, konservasi)..." class="w-full bg-transparent text-sm outline-none">
+          <input id="search-input" type="text" placeholder="Cari materi atau topik (misal: biosfer, wallace, sumber daya alam, reboisasi, pertumbuhan penduduk, piramida)..." class="w-full bg-transparent text-sm outline-none">
         </div>
 
         <div class="notice border border-sky-100 bg-sky-50 text-sky-900 no-print">
           <div class="flex gap-3">
             <i data-lucide="info" class="mt-0.5 w-5 h-5 shrink-0"></i>
-            <p>Pilih bab materi Geografi Kelas 11, kirim tugas proyek kewilayahan, atau ikuti simulasi evaluasi bab berpenjagaan kamera depan.</p>
+            <p>Pilih materi Geografi Kelas XI, coba aktivitas interaktifnya, kerjakan kuis latihan, kirim tugas praktik, atau ikuti Kuis Evaluasi berpenjagaan kamera depan.</p>
           </div>
         </div>
 
         <!-- Navigasi Utama Siswa -->
-        <nav aria-label="Navigasi Bab" class="mt-5 flex flex-wrap gap-2 no-print">
-          <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">Bab 1: Posisi Strategis & SDA</button>
-          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">Bab 2: Keragaman Hayati</button>
-          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">Bab 3: Lingkungan & Penduduk</button>
-          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module4">Bab 4: Mitigasi Bencana</button>
+        <nav aria-label="Navigasi Materi" class="mt-5 flex flex-wrap gap-2 no-print">
+          <button type="button" class="module-button active rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module1">01 · Biosfer &amp; Keanekaragaman Hayati</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module2">02 · Sumber Daya Alam &amp; Lingkungan</button>
+          <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold" data-module="module3">03 · Dinamika Kependudukan</button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-teal-300 text-teal-800" data-module="module-tugas">
             <i data-lucide="file-up" class="w-4 h-4 inline mr-1"></i>Tugas Praktik
           </button>
           <button type="button" class="module-button rounded-xl px-4 py-2.5 text-sm font-bold border-amber-300 text-amber-800" data-module="module-simulasi">
-            <i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Simulasi Bab
+            <i data-lucide="clipboard-check" class="w-4 h-4 inline mr-1"></i>Kuis Evaluasi
           </button>
         </nav>
 
-        <!-- BAB 1: POSISI STRATEGIS INDONESIA & POTENSI SUMBER DAYA ALAM -->
+        <!-- MATERI 01: BIOSFER & KEANEKARAGAMAN HAYATI -->
         <section id="module1" class="module-view active mt-6 search-target">
           <article class="card student-card">
-            <p class="text-sm font-bold uppercase tracking-widest text-emerald-700">Bab 1 • Geografi SMA Kelas 11</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Posisi Strategis Indonesia dan Potensi Sumber Daya Alam</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari karakteristik letak astronomis, geografis, geologis Indonesia sebagai Poros Maritim Dunia serta pengelolaan potensi sumber daya alam secara berkelanjutan.</p>
-          </article>
-
-          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Bab 1">
-            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-konsep">A. Letak & Poros Maritim</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-sda">B. Klasifikasi & Persebaran SDA</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-diagram">C. Visualisasi 3 Diagram Data SDA</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-latihan">D. Latihan Praktik TKA (30 Soal)</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">E. Refleksi Pembelajaran</button>
-          </nav>
-
-          <!-- Subbab A Bab 1 -->
-          <section id="m1-konsep" class="subchapter-view active mt-5">
-            <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
-              <article class="card">
-                <h3 class="text-xl font-extrabold">A. Konsep Dasar Posisi Strategis Indonesia</h3>
-                <p class="mt-3 leading-relaxed">Indonesia berada pada posisi silang dunia (<em>cross position</em>) yang menghubungkan dua benua dan dua samudra, menjadikannya jalur pelayaran internasional yang sangat vital.</p>
-                <div class="mt-4 space-y-3">
-                  <div class="rounded-2xl border border-sky-100">
-                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-letak-astro">
-                      1. Letak Astronomis & Pengaruhnya<i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div id="m1-letak-astro" class="accordion-panel px-4 pb-4 text-sm text-slate-700">
-                      Terletak di antara <strong>6° LU – 11° LS</strong> dan <strong>95° BT – 141° BT</strong>. Garis lintang menyebabkan Indonesia beriklim tropis dengan curah hujan tinggi, sedangkan garis bujur membagi Indonesia menjadi 3 zona waktu: WIB (105° BT), WITA (120° BT), dan WIT (135° BT).
-                    </div>
-                  </div>
-                  <div class="rounded-2xl border border-emerald-100">
-                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-letak-geo">
-                      2. Letak Geografis & Geologis<i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div id="m1-letak-geo" class="accordion-panel px-4 pb-4 text-sm text-slate-700">
-                      Secara geografis diapit Benua Asia dan Australia serta Samudra Hindia dan Pasifik. Secara geologis berada di pertemuan tiga lempeng tektonik aktif (Eurasia, Indo-Australia, Pasifik) yang membentuk rangkaian pegunungan <em>Ring of Fire</em>.
-                    </div>
-                  </div>
-                  <div class="rounded-2xl border border-violet-100">
-                    <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-poros-maritim">
-                      3. Indonesia Sebagai Poros Maritim Dunia<i data-lucide="chevron-down" class="w-5 h-5"></i>
-                    </button>
-                    <div id="m1-poros-maritim" class="accordion-panel px-4 pb-4 text-sm text-slate-700">
-                      Didukung oleh 3 Alur Laut Kepulauan Indonesia (ALKI I, II, dan III) dan 5 pilar utama: budaya maritim, pengelolaan sumber daya laut, infrastruktur & konektivitas maritim, diplomasi maritim, serta pertahanan maritim.
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <aside class="card bg-violet-50 border-violet-100">
-                <i data-lucide="compass" class="w-7 h-7 text-violet-700"></i>
-                <h3 class="mt-3 text-xl font-extrabold">Batas Wilayah Maritim (UNCLOS 1982)</h3>
-                <table class="mt-4 w-full text-left text-sm">
-                  <thead>
-                    <tr class="border-b border-violet-200">
-                      <th class="pb-2">Zona Laut</th>
-                      <th class="pb-2">Batas Ukuran</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="border-b border-violet-100"><td class="py-2 font-bold">Laut Teritorial</td><td>12 Mil Laut</td></tr>
-                    <tr class="border-b border-violet-100"><td class="py-2 font-bold">Zona Tambahan</td><td>24 Mil Laut</td></tr>
-                    <tr class="border-b border-violet-100"><td class="py-2 font-bold">ZEE (Ekonomi Eksklusif)</td><td>200 Mil Laut</td></tr>
-                    <tr><td class="py-2 font-bold">Landas Kontinen</td><td>≤ 350 Mil Laut</td></tr>
-                  </tbody>
-                </table>
-              </aside>
-            </div>
-          </section>
-
-          <!-- Subbab B Bab 1 -->
-          <section id="m1-sda" class="subchapter-view mt-5">
-            <article class="card">
-              <div class="flex items-center gap-3 border-b pb-3 mb-4">
-                <div class="p-2.5 rounded-xl bg-emerald-100 text-emerald-800">
-                  <i data-lucide="layers" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <h3 class="text-xl font-extrabold text-slate-900">B. Klasifikasi, Persebaran & Pengelolaan Sumber Daya Alam</h3>
-                  <p class="text-sm text-slate-500">Pemetaan komoditas strategis Indonesia serta prinsip pembangunan berkelanjutan.</p>
-                </div>
-              </div>
-
-              <div class="mb-6">
-                <h4 class="font-extrabold text-lg text-slate-800 mb-2">1. Klasifikasi Sumber Daya Alam</h4>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                    <p class="font-bold text-emerald-800 flex items-center gap-2 mb-2">
-                      <i data-lucide="refresh-cw" class="w-4 h-4"></i> Berdasarkan Sifat Kelestariannya:
-                    </p>
-                    <ol class="list-decimal list-inside space-y-1 text-sm text-slate-700">
-                      <li><strong>SDA Terbarukan (Renewable):</strong> Hutan, air, tanah, energi surya, angin, dan perikanan.</li>
-                      <li><strong>SDA Tidak Terbarukan (Non-renewable):</strong> Minyak bumi, gas alam, batu bara, emas, timah, dan nikel.</li>
-                      <li><strong>SDA Kekal (Perpetual):</strong> Sinar matahari, gelombang laut, dan pasang surut.</li>
-                    </ol>
-                  </div>
-
-                  <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                    <p class="font-bold text-teal-800 flex items-center gap-2 mb-2">
-                      <i data-lucide="sprout" class="w-4 h-4"></i> Berdasarkan Jenis & Habitatnya:
-                    </p>
-                    <ol class="list-decimal list-inside space-y-1 text-sm text-slate-700">
-                      <li><strong>SDA Hayati (Biotik):</strong> Sumber daya yang berasal dari makhluk hidup (flora dan fauna).</li>
-                      <li><strong>SDA Nonhayati (Abiotik):</strong> Bahan tambang, mineral, batuan, air, dan udara.</li>
-                      <li><strong>SDA Terestrial & Akuatik:</strong> Potensi sumber daya daratan maupun perairan laut.</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-6">
-                <h4 class="font-extrabold text-lg text-slate-800 mb-2">2. Tabel Persebaran Komoditas Utama Indonesia</h4>
-                <div class="overflow-x-auto border rounded-xl shadow-sm bg-white p-2">
-                  <table class="w-full text-sm text-left border-collapse">
-                    <thead>
-                      <tr class="bg-slate-800 text-white font-bold">
-                        <th class="p-2.5 border border-slate-700">Sektor SDA</th>
-                        <th class="p-2.5 border border-slate-700">Komoditas Unggulan</th>
-                        <th class="p-2.5 border border-slate-700">Wilayah Persebaran Utama</th>
-                        <th class="p-2.5 border border-slate-700">Strategi Konservasi</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-200">
-                      <tr>
-                        <td class="p-2.5 font-semibold">Kehutanan</td>
-                        <td class="p-2.5">Meranti, Ulin, Rotan, Mangrove</td>
-                        <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Kalimantan, Sumatra, Papua</td>
-                        <td class="p-2.5 text-emerald-700 font-bold">Tebang Pilih & Reboisasi</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2.5 font-semibold">Pertambangan</td>
-                        <td class="p-2.5">Nikel, Timah, Tembaga, Batu Bara</td>
-                        <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Sulawesi, Bangka Belitung, Papua</td>
-                        <td class="p-2.5 text-emerald-700 font-bold">AMDAL & Reklamasi Lahan</td>
-                      </tr>
-                      <tr>
-                        <td class="p-2.5 font-semibold">Kelautan</td>
-                        <td class="p-2.5">Tuna, Cakalang, Rumput Laut, Terumbu Karang</td>
-                        <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Laut Banda, Arafura, Sulawesi</td>
-                        <td class="p-2.5 text-emerald-700 font-bold">WPPNRI & Zona Konservasi Laut</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h4 class="font-extrabold text-lg text-slate-800 mb-3">3. Pilar Pengelolaan SDA Berkelanjutan</h4>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="p-4 rounded-xl border border-sky-100 bg-sky-50/50">
-                    <div class="flex items-center justify-between mb-1">
-                      <span class="font-bold text-sky-900">AMDAL (Analisis Mengenai Dampak Lingkungan)</span>
-                      <span class="text-xs bg-sky-200 text-sky-800 px-2 py-0.5 rounded font-bold">Wajib</span>
-                    </div>
-                    <p class="text-xs text-slate-600">Kajian dampak penting suatu usaha/kegiatan yang direncanakan pada lingkungan hidup sebelum izin eksploitasi diterbitkan.</p>
-                  </div>
-
-                  <div class="p-4 rounded-xl border border-emerald-100 bg-emerald-50/50">
-                    <div class="flex items-center justify-between mb-1">
-                      <span class="font-bold text-emerald-900">Prinsip Ekoefisiensi</span>
-                      <span class="text-xs bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold">Berkelanjutan</span>
-                    </div>
-                    <p class="text-xs text-slate-600">Meminimalkan penggunaan bahan baku dan energi serta mengurangi limbah berbahaya dalam proses industri SDA.</p>
-                  </div>
+                <p class="text-sm font-bold uppercase tracking-widest text-emerald-700">Materi 01 • Geografi SMA Kelas XI</p>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Biosfer &amp; Keanekaragaman Hayati</h2>
+                <p class="mt-2 text-slate-600 leading-relaxed">Mengapa makhluk hidup tersebar berbeda di tiap wilayah? Temukan hubungan antara lingkungan, sejarah geologi, dan kehidupan.</p>
+                <div class="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-xs font-bold text-emerald-900">
+                  <i data-lucide="target" class="w-4 h-4 text-emerald-700"></i>
+                  <span>Tujuan Belajar: Mengidentifikasi persebaran flora-fauna serta faktor yang memengaruhinya.</span>
                 </div>
               </div>
-            </article>
-          </section>
-
-          <!-- Subbab C Bab 1 -->
-          <section id="m1-diagram" class="subchapter-view mt-5">
-            <article class="card">
-              <div class="flex items-center gap-3 border-b pb-3 mb-4">
-                <div class="p-2.5 rounded-xl bg-violet-100 text-violet-800">
-                  <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <h3 class="text-xl font-extrabold text-slate-900">C. Visualisasi Data Geografi dalam 3 Bentuk Diagram</h3>
-                  <p class="text-sm text-slate-500">Membaca data spasial, komoditas mineral, tren energi terbarukan, dan proporsi pemanfaatan lahan.</p>
-                </div>
-              </div>
-
-              <div class="space-y-6">
-                <!-- Diagram Batang -->
-                <div class="p-5 border rounded-2xl bg-white shadow-sm">
-                  <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-extrabold text-lg text-sky-900 flex items-center gap-2">
-                      <i data-lucide="bar-chart-2" class="w-5 h-5 text-sky-600"></i> 1. Diagram Batang (Perbandingan Potensi Cadangan Nikel)
-                    </h4>
-                    <span class="text-xs bg-sky-100 text-sky-800 font-bold px-2.5 py-1 rounded-full">Fungsi: Membandingkan Wilayah</span>
-                  </div>
-                  <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                    Membandingkan estimasi sebaran cadangan bijih nikel (dalam juta ton) antar provinsi utama di Indonesia Timur.
-                  </p>
-                  
-                  <div class="bg-slate-900 rounded-xl p-4 text-white">
-                    <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Gambar 1: Perbandingan Sebaran Cadangan Bijih Nikel (Juta Ton)</p>
-                    <svg viewBox="0 0 400 180" class="w-full h-44">
-                      <line x1="40" y1="20" x2="380" y2="20" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="60" x2="380" y2="60" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="100" x2="380" y2="100" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="140" x2="380" y2="140" stroke="#94a3b8" stroke-width="2" />
-                      
-                      <text x="30" y="25" fill="#94a3b8" font-size="10" text-anchor="end">100</text>
-                      <text x="30" y="65" fill="#94a3b8" font-size="10" text-anchor="end">75</text>
-                      <text x="30" y="105" fill="#94a3b8" font-size="10" text-anchor="end">50</text>
-                      <text x="30" y="145" fill="#94a3b8" font-size="10" text-anchor="end">0</text>
-
-                      <rect x="70" y="36" width="45" height="104" rx="4" fill="#38bdf8" />
-                      <text x="92.5" y="28" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">88</text>
-                      <text x="92.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Sultra</text>
-
-                      <rect x="175" y="48" width="45" height="92" rx="4" fill="#34d399" />
-                      <text x="197.5" y="40" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">76</text>
-                      <text x="197.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Sulteng</text>
-
-                      <rect x="280" y="62" width="45" height="78" rx="4" fill="#fbbf24" />
-                      <text x="302.5" y="54" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">65</text>
-                      <text x="302.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Malut</text>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Diagram Garis -->
-                <div class="p-5 border rounded-2xl bg-white shadow-sm">
-                  <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-extrabold text-lg text-emerald-900 flex items-center gap-2">
-                      <i data-lucide="trending-up" class="w-5 h-5 text-emerald-600"></i> 2. Diagram Garis (Tren Pemanfaatan Energi Panas Bumi)
-                    </h4>
-                    <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">Fungsi: Menunjukkan Tren</span>
-                  </div>
-                  <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                    Menunjukkan tren peningkatan kapasitas terpasang pembangkit listrik tenaga panas bumi (PLTP) Indonesia dalam kurun waktu beberapa tahun terakhir.
-                  </p>
-
-                  <div class="bg-slate-900 rounded-xl p-4 text-white">
-                    <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Gambar 2: Tren Kapasitas Terpasang Energi Geothermal (MW)</p>
-                    <svg viewBox="0 0 400 180" class="w-full h-44">
-                      <line x1="40" y1="20" x2="380" y2="20" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="60" x2="380" y2="60" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="100" x2="380" y2="100" stroke="#334155" stroke-dasharray="4" />
-                      <line x1="40" y1="140" x2="380" y2="140" stroke="#94a3b8" stroke-width="2" />
-
-                      <text x="30" y="25" fill="#94a3b8" font-size="10" text-anchor="end">3000</text>
-                      <text x="30" y="65" fill="#94a3b8" font-size="10" text-anchor="end">2250</text>
-                      <text x="30" y="105" fill="#94a3b8" font-size="10" text-anchor="end">1500</text>
-                      
-                      <text x="80" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2020</text>
-                      <text x="210" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2023</text>
-                      <text x="340" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2026</text>
-
-                      <polyline fill="none" stroke="#38bdf8" stroke-width="3" points="80,96 210,64 340,28" />
-                      <polygon fill="rgba(56, 189, 248, 0.15)" points="80,140 80,96 210,64 340,28 340,140" />
-
-                      <circle cx="80" cy="96" r="5" fill="#38bdf8" />
-                      <text x="80" y="84" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.130</text>
-
-                      <circle cx="210" cy="64" r="5" fill="#38bdf8" />
-                      <text x="210" y="52" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.418</text>
-
-                      <circle cx="340" cy="28" r="5" fill="#38bdf8" />
-                      <text x="340" y="16" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.890</text>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Diagram Lingkaran -->
-                <div class="p-5 border rounded-2xl bg-white shadow-sm">
-                  <div class="flex items-center justify-between mb-3">
-                    <h4 class="font-extrabold text-lg text-violet-900 flex items-center gap-2">
-                      <i data-lucide="pie-chart" class="w-5 h-5 text-violet-600"></i> 3. Diagram Lingkaran (Proporsi Wilayah Laut & Darat Indonesia)
-                    </h4>
-                    <span class="text-xs bg-violet-100 text-violet-800 font-bold px-2.5 py-1 rounded-full">Fungsi: Persentase / Proporsi</span>
-                  </div>
-                  <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                    Memperlihatkan perbandingan proporsi luas wilayah perairan laut dan daratan NKRI sebagai negara kepulauan (<em>archipelagic state</em>).
-                  </p>
-
-                  <div class="bg-slate-900 rounded-xl p-4 text-white flex flex-col md:flex-row items-center justify-around gap-4">
-                    <div class="w-40 h-40">
-                      <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
-                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#34d399" stroke-width="5" />
-                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#38bdf8" stroke-width="5" stroke-dasharray="63 37" stroke-dashoffset="0" />
-                      </svg>
-                    </div>
-                    <div class="space-y-2 text-sm">
-                      <p class="font-mono text-xs text-slate-400 mb-2 border-b border-slate-800 pb-1">Gambar 3: Proporsi Luas Perairan vs Daratan Indonesia</p>
-                      <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-sky-400 inline-block"></span>
-                        <span>Wilayah Perairan Laut (~63% - 3,25 Juta km²)</span>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
-                        <span>Wilayah Daratan (~37% - 1,91 Juta km²)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab D Bab 1: LATIHAN PRAKTIK TKA (30 SOAL LENGKAP) -->
-          <section id="m1-latihan" class="subchapter-view mt-5">
-            <article class="card">
-              <div class="flex items-center justify-between border-b pb-3 mb-4 flex-wrap gap-2">
-                <div>
-                  <h3 class="text-xl font-extrabold text-slate-900">D. Latihan Praktik TKA Bab 1 (30 Soal Interaktif)</h3>
-                  <p class="text-xs text-slate-500">Uji pemahaman posisi strategis Indonesia, batas maritim, persebaran SDA, dan pembangunan berkelanjutan.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span id="m1-tka-counter" class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-full">Soal 1 / 30</span>
-                </div>
-              </div>
-
-              <!-- Interaktif Player 30 Soal TKA Bab 1 -->
-              <div id="m1-tka-quiz-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <p id="m1-tka-question-text" class="font-extrabold text-base text-slate-900 leading-relaxed mb-4">
-                  Memuat Soal TKA Bab 1...
-                </p>
-
-                <div id="m1-tka-options-container" class="space-y-2 text-sm"></div>
-
-                <div id="m1-tka-feedback" class="mt-4 p-3 rounded-xl hidden text-xs font-bold leading-relaxed"></div>
-
-                <div class="mt-6 flex justify-between items-center flex-wrap gap-3 pt-3 border-t">
-                  <button id="btn-m1-tka-prev" type="button" class="border bg-white px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">
-                    ← Soal Sebelumnya
-                  </button>
-                  <button id="btn-m1-tka-next" type="button" class="bg-emerald-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800">
-                    Soal Berikutnya →
-                  </button>
-                </div>
-              </div>
-
-              <div id="m1-tka-result-card" class="mt-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 hidden text-center">
-                <i data-lucide="award" class="w-12 h-12 text-emerald-600 mx-auto mb-2"></i>
-                <h4 class="text-xl font-extrabold text-emerald-900">Latihan TKA Bab 1 Selesai!</h4>
-                <p id="m1-tka-score-text" class="text-3xl font-extrabold text-emerald-700 mt-2">Nilai: 0 / 100</p>
-                <button id="btn-m1-tka-restart" type="button" class="mt-4 bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800">
-                  Ulangi Latihan TKA (30 Soal)
-                </button>
-              </div>
-            </article>
-          </section>
-
-          <!-- Subbab E Bab 1 -->
-          <section id="m1-refleksi" class="subchapter-view mt-5">
-            <article class="card">
-              <h3 class="text-xl font-extrabold">E. Refleksi Pembelajaran Bab 1</h3>
-              <div class="mt-4 space-y-2">
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami pengaruh letak astronomis, geografis, dan geologis Indonesia</label>
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya bisa membedakan zona batas laut teritorial, ZEE, dan landas kontinen</label>
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami prinsip pengelolaan sumber daya alam berkelanjutan & AMDAL</label>
-              </div>
-              <label for="module1-notes" class="mt-5 block font-bold">Catatan Refleksi Siswa:</label>
-              <textarea id="module1-notes" class="mt-2 w-full rounded-xl border p-3" rows="3" placeholder="Tulis catatan atau pertanyaanmu di sini..."></textarea>
-              <button id="save-m1-btn" type="button" class="mt-4 rounded-xl bg-sky-700 px-5 py-3 font-bold text-white hover:bg-sky-800">Simpan Jawaban ke Guru</button>
-            </article>
-          </section>
-        </section>
-
-        <!-- BAB 2: KERAGAMAN HAYATI (FLORA DAN FAUNA) -->
-        <section id="module2" class="module-view mt-6 search-target">
-          <article class="card student-card">
-            <p class="text-sm font-bold uppercase tracking-widest text-violet-700">Bab 2 • Geografi SMA Kelas 11 (Kurikulum Merdeka)</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Keragaman Hayati (Flora dan Fauna) di Indonesia dan Dunia</h2>
-            <p class="mt-3 text-slate-600 leading-relaxed">Pelajari faktor-faktor yang memengaruhi persebaran flora dan fauna, karakteristik bioma dunia, pembagian zona biogeografi Nusantara (Asiatis, Peralihan, Australis), serta upaya konservasi keanekaragaman hayati.</p>
+            </div>
           </article>
 
-          <!-- Navigasi Subbab Bab 2 -->
-          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Bab 2">
-            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-faktor">A. Faktor Persebaran</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-bioma">B. Bioma Dunia</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-nusantara">C. Zona Flora & Fauna Indonesia</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-simulasi-zona">D. Simulasi Penelusuran Zona</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-konservasi">E. Kawasan Konservasi</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-matching">F. Game Pasang Istilah</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">G. Refleksi Bab 2</button>
+          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Materi 01">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-inti">A. Inti Materi Biosfer</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-zona">B. Aktivitas: Jelajahi Zona Fauna</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-bioma">C. Bioma &amp; Kawasan Konservasi</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-matching">D. Kuis Pasang Istilah</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-kuis">E. Kuis Latihan Materi 01</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m1-refleksi">F. Refleksi Materi 01</button>
           </nav>
 
-          <!-- Subbab A Bab 2 -->
-          <section id="m2-faktor" class="subchapter-view active mt-5">
-            <article class="card">
-              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 01 • DINAMIKA BIOSFER</span>
-              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Faktor-Faktor yang Memengaruhi Persebaran Flora dan Fauna</h3>
-              <p class="text-slate-700 text-sm leading-relaxed mb-4">
-                Persebaran makhluk hidup di permukaan bumi tidak merata karena dipengaruhi oleh interaksi empat faktor geografis utama dalam lapisan <strong>Biosfer</strong>.
-              </p>
-              <div class="grid md:grid-cols-2 gap-4 mb-4">
-                <div class="bg-sky-50 border border-sky-100 p-4 rounded-xl text-sm">
-                  <strong class="text-sky-900 block mb-1 flex items-center gap-2"><i data-lucide="cloud-rain" class="w-4 h-4"></i> 1. Faktor Klimatik (Iklim)</strong>
-                  <p class="text-slate-700">Meliputi suhu udara, curah hujan, kelembapan, dan angin. Hutan hujan tropis tumbuh lebat di daerah bercurah hujan tinggi, sedangkan kaktus beradaptasi di iklim gurun yang kering.</p>
+          <!-- Subbab A Materi 01: Inti Materi -->
+          <section id="m1-inti" class="subchapter-view active mt-5 space-y-5">
+            <div class="grid md:grid-cols-2 gap-4">
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 grid place-items-center mb-3">
+                  <i data-lucide="layers" class="w-5 h-5"></i>
                 </div>
-                <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-sm">
-                  <strong class="text-emerald-900 block mb-1 flex items-center gap-2"><i data-lucide="mountain" class="w-4 h-4"></i> 2. Faktor Edafik (Tanah) & Fisiografis</strong>
-                  <p class="text-slate-700"><strong>Edafik</strong> berkaitan dengan kesuburan, tekstur, dan pH tanah. <strong>Fisiografis</strong> berkaitan dengan ketinggian tempat (relief) yang memengaruhi penurunan suhu (<em>lapse rate</em>).</p>
-                </div>
-              </div>
-              <div class="codebox">Ringkasan Hukum Klimatologi Junghuhn (Berdasarkan Ketinggian Tempat):
-• Zona Panas (0 – 650 mdpl)    : Padi, tebu, kelapa, jagung
-• Zona Sedang (650 – 1.500 mdpl): Kopi, teh, kina, karet
-• Zona Sejuk (1.500 – 2.500 mdpl): Pinus, cemara, sayuran dataran tinggi
-• Zona Dingin (> 2.500 mdpl)   : Lumut dan tumbuhan perdu pegunungan tinggi</div>
-            </article>
-          </section>
+                <h3 class="text-lg font-extrabold text-slate-900">1. Apa itu Biosfer?</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <strong>Biosfer</strong> adalah bagian bumi tempat makhluk hidup berada. <strong>Keanekaragaman hayati</strong> mencakup variasi tingkat <strong>gen</strong> (variasi dalam satu spesies), <strong>jenis</strong> (variasi antarspesies), dan <strong>ekosistem</strong> (variasi habitat dan interaksi komunitas makhluk hidup).
+                </p>
+              </article>
 
-          <!-- Subbab B Bab 2 -->
-          <section id="m2-bioma" class="subchapter-view mt-5">
-            <article class="card">
-              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 02 • EKOSISTEM GLOBAL</span>
-              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Persebaran Bioma Utama di Dunia</h3>
-              <p class="text-slate-700 text-sm leading-relaxed mb-4">
-                <strong>Bioma</strong> adalah ekosistem daratan berskala luas yang dicirikan oleh vegetasi dominan dan beradaptasi dengan kondisi iklim regional tertentu.
-              </p>
-              <div class="grid md:grid-cols-3 gap-3 mb-4 text-sm">
-                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                  <strong class="text-emerald-900 block mb-1">01. Hutan Hujan Tropis</strong>
-                  <span class="text-xs text-slate-600">Curah hujan &gt; 2.000 mm/tahun, kanopi lebat dan berlapis, keanekaragaman hayati tertinggi (Amazon, Kongo, Indonesia).</span>
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-800 grid place-items-center mb-3">
+                  <i data-lucide="trees" class="w-5 h-5"></i>
                 </div>
-                <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                  <strong class="text-amber-900 block mb-1">02. Sabana & Stepa</strong>
-                  <span class="text-xs text-slate-600">Sabana berupa padang rumput diselingi pepohonan (Nusa Tenggara, Afrika); Stepa berupa padang rumput luas tanpa pohon.</span>
-                </div>
-                <div class="bg-sky-50 p-4 rounded-xl border border-sky-100">
-                  <strong class="text-sky-900 block mb-1">03. Taiga & Tundra</strong>
-                  <span class="text-xs text-slate-600">Taiga didominasi hutan konifer/pinus di lintang tinggi; Tundra berada di lingkar kutub dengan vegetasi lumut kerak (<em>lichen</em>).</span>
-                </div>
-              </div>
-              <div class="codebox">Pola Gradien Bioma dari Khatulistiwa menuju Kutub:
-Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer) → Tundra (Kutub)</div>
-            </article>
-          </section>
+                <h3 class="text-lg font-extrabold text-slate-900">2. Persebaran Flora</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <strong>Hutan hujan tropis</strong> banyak dijumpai di wilayah bercurah hujan tinggi (Sumatra, Kalimantan, Papua); <strong>sabana</strong> berkembang di wilayah dengan musim kering yang lebih nyata (Nusa Tenggara). Ketinggian tempat juga mengubah jenis vegetasi secara vertikal.
+                </p>
+              </article>
 
-          <!-- Subbab C Bab 2 -->
-          <section id="m2-nusantara" class="subchapter-view mt-5">
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 grid place-items-center mb-3">
+                  <i data-lucide="paw-print" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">3. Persebaran Fauna</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Indonesia barat berciri <strong>Asiatis</strong>, wilayah tengah berciri <strong>peralihan (Wallacea)</strong>, dan wilayah timur berciri <strong>Australis</strong>. <strong>Garis Wallace</strong> dan <strong>Garis Weber</strong> membantu menjelaskan pembagian wilayah fauna tersebut.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-violet-100 text-violet-800 grid place-items-center mb-3">
+                  <i data-lucide="cloud-sun" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">4. Faktor Penentu Persebaran</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <strong>Iklim (klimatik)</strong>, <strong>tanah (edafik)</strong>, <strong>relief/ketinggian (fisiografis)</strong>, ketersediaan air, sejarah geologi (Paparan Sunda &amp; Sahul), penghalang alam (laut dalam/pegunungan), dan aktivitas manusia memengaruhi persebaran makhluk hidup.
+                </p>
+              </article>
+            </div>
+
             <article class="card">
-              <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 03 • BIOGEOGRAFI NUSANTARA</span>
-              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Pembagian Zona Flora dan Fauna Indonesia</h3>
-              <p class="text-slate-700 text-sm leading-relaxed mb-4">
-                Sejarah geologi zaman es (Paparan Sunda dan Paparan Sahul) membagi persebaran fauna Indonesia menjadi tiga wilayah utama yang dipisahkan oleh <strong>Garis Wallace</strong> dan <strong>Garis Weber</strong>.
-              </p>
-              <div class="overflow-x-auto border rounded-xl shadow-sm bg-white p-2">
+              <h4 class="font-extrabold text-base text-slate-900 mb-3">Perbandingan Tiga Zona Biogeografi Fauna Indonesia</h4>
+              <div class="overflow-x-auto border rounded-xl bg-white p-2">
                 <table class="w-full text-xs text-left border-collapse">
                   <thead>
                     <tr class="bg-slate-800 text-white font-bold">
                       <th class="p-2.5 border border-slate-700">Aspek Pembeda</th>
-                      <th class="p-2.5 border border-slate-700">Tipe Asiatis (Barat)</th>
-                      <th class="p-2.5 border border-slate-700">Tipe Peralihan (Wallacea)</th>
-                      <th class="p-2.5 border border-slate-700">Tipe Australis (Timur)</th>
+                      <th class="p-2.5 border border-slate-700">Indonesia Barat (Asiatis)</th>
+                      <th class="p-2.5 border border-slate-700">Indonesia Tengah (Peralihan)</th>
+                      <th class="p-2.5 border border-slate-700">Indonesia Timur (Australis)</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-200 text-slate-700">
                     <tr>
-                      <td class="p-2.5 font-bold bg-slate-50">Cakupan Wilayah</td>
+                      <td class="p-2.5 font-bold bg-slate-50">Wilayah</td>
                       <td class="p-2.5">Sumatra, Jawa, Kalimantan, Bali</td>
                       <td class="p-2.5">Sulawesi, Maluku, Nusa Tenggara</td>
                       <td class="p-2.5">Papua dan Kepulauan Aru</td>
                     </tr>
                     <tr>
-                      <td class="p-2.5 font-bold bg-slate-50">Batas Geografis</td>
-                      <td class="p-2.5">Sebelah barat Garis Wallace</td>
-                      <td class="p-2.5">Di antara Garis Wallace & Weber</td>
-                      <td class="p-2.5">Sebelah timur Garis Weber</td>
+                      <td class="p-2.5 font-bold bg-slate-50">Batas &amp; Geologi</td>
+                      <td class="p-2.5">Barat Garis Wallace (Paparan Sunda)</td>
+                      <td class="p-2.5">Antara Garis Wallace &amp; Weber (Wallacea)</td>
+                      <td class="p-2.5">Timur Garis Weber (Paparan Sahul)</td>
                     </tr>
                     <tr>
-                      <td class="p-2.5 font-bold bg-slate-50">Karakteristik Fauna</td>
-                      <td class="p-2.5">Mamalia bertubuh besar, primata, ikan air tawar beragam</td>
-                      <td class="p-2.5">Banyak satwa endemik unik (campuran ciri Asia & Australia)</td>
-                      <td class="p-2.5">Mamalia berkantung (<em>marsupial</em>), burung berbulu indah</td>
-                    </tr>
-                    <tr>
-                      <td class="p-2.5 font-bold bg-slate-50">Contoh Fauna Khas</td>
-                      <td class="p-2.5">Gajah Sumatra, Orangutan, Harimau, Badak Bercula Satu</td>
-                      <td class="p-2.5">Komodo, Anoa, Babirusa, Burung Maleo, Tarsius</td>
+                      <td class="p-2.5 font-bold bg-slate-50">Contoh Fauna</td>
+                      <td class="p-2.5">Gajah Sumatra, Harimau Sumatra, Orangutan, Badak Jawa</td>
+                      <td class="p-2.5">Komodo, Anoa, Babirusa, Maleo, Tarsius</td>
                       <td class="p-2.5">Cenderawasih, Kasuari, Kanguru Pohon, Walabi</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <div class="codebox mt-4">Zonasi Vegetasi Menurut Ketinggian Tempat (Hukum Junghuhn):
+• Zona Panas (0 – 650 mdpl)     : Padi, tebu, kelapa, jagung
+• Zona Sedang (650 – 1.500 mdpl) : Kopi, teh, kina, karet
+• Zona Sejuk (1.500 – 2.500 mdpl): Pinus, cemara, sayuran dataran tinggi
+• Zona Dingin (> 2.500 mdpl)    : Lumut dan tumbuhan perdu pegunungan tinggi</div>
             </article>
           </section>
 
-          <!-- Subbab D Bab 2 -->
-          <section id="m2-simulasi-zona" class="subchapter-view mt-5">
-            <article class="card space-y-6">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 04 • ANALISIS SPASIAL</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Simulasi Penelusuran Zona Biogeografi Nusantara</h3>
-                <p class="text-slate-700 text-sm leading-relaxed">
-                  Gunakan simulasi interaktif di bawah ini untuk menelusuri klasifikasi zona biogeografi suatu pulau berdasarkan posisi relatifnya terhadap Garis Wallace dan Garis Weber.
-                </p>
+          <!-- Subbab B Materi 01: Aktivitas 01 Jelajahi Zona Fauna -->
+          <section id="m1-zona" class="subchapter-view mt-5 space-y-5">
+            <article class="card bg-emerald-50/60 border-emerald-200">
+              <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+                <div>
+                  <span class="text-xs font-bold uppercase text-emerald-700">Aktivitas 01 • Eksplorasi Zona</span>
+                  <h3 class="text-xl font-extrabold text-slate-900 mt-1">Jelajahi Zona Fauna Indonesia</h3>
+                  <p class="text-sm text-slate-600">Pilih satu wilayah untuk melihat contoh fauna dan alasan geologis persebarannya.</p>
+                </div>
               </div>
 
-              <!-- Interactive Biogeography Tracing Simulation -->
-              <div class="p-5 border border-sky-200 rounded-2xl bg-sky-50/50">
-                <h4 class="font-extrabold text-sky-900 text-base mb-1 flex items-center gap-2">
-                  <i data-lucide="map-pin" class="w-5 h-5 text-sky-700"></i> Penelusuran Zona Flora & Fauna Interaktif
-                </h4>
-                <p class="text-xs text-slate-600 mb-4">Pilih pulau/wilayah di Indonesia untuk melihat langkah analisis zona biogeografinya secara bertahap!</p>
+              <div class="flex flex-wrap gap-2 my-4" role="group" aria-label="Pilih wilayah fauna">
+                <button type="button" class="zone-choice selected rounded-xl px-4 py-2.5 text-sm font-bold" data-region="barat">Indonesia Barat (Asiatis)</button>
+                <button type="button" class="zone-choice rounded-xl px-4 py-2.5 text-sm font-bold" data-region="tengah">Indonesia Tengah (Peralihan)</button>
+                <button type="button" class="zone-choice rounded-xl px-4 py-2.5 text-sm font-bold" data-region="timur">Indonesia Timur (Australis)</button>
+              </div>
 
-                <div class="flex flex-wrap items-end gap-3 mb-4">
-                  <div>
-                    <label for="sim-region-select" class="block text-xs font-bold text-slate-700 mb-1">Pilih Wilayah / Pulau:</label>
-                    <select id="sim-region-select" class="border border-sky-300 rounded-xl px-3 py-2 text-sm font-bold bg-white">
-                      <option value="Kalimantan">Pulau Kalimantan</option>
-                      <option value="Sulawesi">Pulau Sulawesi</option>
-                      <option value="Papua">Pulau Papua</option>
-                      <option value="Nusa Tenggara">Kepulauan Nusa Tenggara</option>
-                      <option value="Sumatra">Pulau Sumatra</option>
-                    </select>
-                  </div>
-                  <button id="btn-sim-next" type="button" class="bg-sky-700 text-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-sky-800">Langkah Berikutnya →</button>
-                  <button id="btn-sim-reset" type="button" class="border border-slate-300 bg-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-slate-100">Mulai Ulang</button>
-                </div>
+              <div id="region-result" class="p-4 rounded-2xl bg-white border-l-4 border-amber-500 shadow-sm">
+                <strong class="text-base text-slate-900 block">Indonesia Barat · Asiatis</strong>
+                <p class="text-sm text-slate-600 mt-1 leading-relaxed">Contoh: gajah Sumatra, harimau Sumatra, orangutan, dan badak Jawa. Banyak spesies memiliki kemiripan dengan fauna Asia karena hubungan geologi masa lampau dengan Paparan Sunda.</p>
+              </div>
+            </article>
 
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <div class="flow-step" data-step="0">1. Lokasi Pulau</div>
-                  <div class="flow-step" data-step="1">2. Sejarah Paparan</div>
-                  <div class="flow-step" data-step="2">3. Cek Garis Batas</div>
-                  <div class="flow-step" data-step="3">4. Zona Biogeografi</div>
-                  <div class="flow-step" data-step="4">5. Contoh Endemik</div>
-                </div>
+            <!-- Penelusuran Langkah Demi Langkah -->
+            <article class="card">
+              <h4 class="font-extrabold text-sky-900 text-base mb-1 flex items-center gap-2">
+                <i data-lucide="map-pin" class="w-5 h-5 text-sky-700"></i> Simulasi Penelusuran Zona Biogeografi per Pulau
+              </h4>
+              <p class="text-xs text-slate-600 mb-4">Pilih pulau/wilayah di Indonesia untuk melihat langkah analisis zona biogeografinya secara bertahap.</p>
 
-                <div id="sim-feedback" class="p-3 bg-white border border-sky-200 rounded-xl text-sm font-extrabold text-sky-900">
-                  Pilih wilayah lalu tekan "Langkah Berikutnya" untuk memulai analisis spasial.
+              <div class="flex flex-wrap items-end gap-3 mb-4">
+                <div>
+                  <label for="sim-region-select" class="block text-xs font-bold text-slate-700 mb-1">Pilih Wilayah / Pulau:</label>
+                  <select id="sim-region-select" class="border border-sky-300 rounded-xl px-3 py-2 text-sm font-bold bg-white">
+                    <option value="Kalimantan">Pulau Kalimantan</option>
+                    <option value="Sulawesi">Pulau Sulawesi</option>
+                    <option value="Papua">Pulau Papua</option>
+                    <option value="Nusa Tenggara">Kepulauan Nusa Tenggara</option>
+                    <option value="Sumatra">Pulau Sumatra</option>
+                  </select>
                 </div>
+                <button id="btn-sim-next" type="button" class="bg-sky-700 text-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-sky-800">Langkah Berikutnya →</button>
+                <button id="btn-sim-reset" type="button" class="border border-slate-300 bg-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-slate-100">Mulai Ulang</button>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <div class="flow-step" data-step="0">1. Lokasi Pulau</div>
+                <div class="flow-step" data-step="1">2. Sejarah Paparan</div>
+                <div class="flow-step" data-step="2">3. Cek Garis Batas</div>
+                <div class="flow-step" data-step="3">4. Zona Biogeografi</div>
+                <div class="flow-step" data-step="4">5. Contoh Endemik</div>
+              </div>
+
+              <div id="sim-feedback" class="p-3 bg-sky-50 border border-sky-200 rounded-xl text-sm font-extrabold text-sky-900">
+                Pilih wilayah lalu tekan "Langkah Berikutnya" untuk memulai analisis spasial.
               </div>
             </article>
           </section>
 
-          <!-- Subbab E Bab 2 -->
-          <section id="m2-konservasi" class="subchapter-view mt-5">
-            <article class="card space-y-6">
-              <div>
-                <span class="text-xs font-bold text-violet-700 uppercase block mb-1">TOPIK 05 • PERLINDUNGAN KEANEKARAGAMAN HAYATI</span>
-                <h3 class="text-xl font-extrabold text-slate-900 mb-2">E. Kawasan Konservasi di Indonesia (Insitu & Eksitu)</h3>
-                <p class="text-slate-700 text-sm leading-relaxed">
-                  <strong>Konservasi Insitu</strong> adalah pelestarian flora dan fauna langsung di dalam habitat aslinya (seperti Taman Nasional, Cagar Alam, Suaka Margasatwa). <strong>Konservasi Eksitu</strong> adalah pelestarian di luar habitat aslinya (seperti Kebun Raya, Kebun Binatang, Taman Safari).
-                </p>
+          <!-- Subbab C Materi 01: Bioma & Kawasan Konservasi -->
+          <section id="m1-bioma" class="subchapter-view mt-5 space-y-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold text-slate-900 mb-3">Persebaran Bioma Utama di Dunia</h3>
+              <div class="grid md:grid-cols-3 gap-3 text-sm">
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                  <strong class="text-emerald-900 block mb-1">01. Hutan Hujan Tropis</strong>
+                  <span class="text-xs text-slate-600">Curah hujan &gt; 2.000 mm/tahun, kanopi lebat dan berlapis, keanekaragaman hayati tertinggi (Amazon, Kongo, Indonesia).</span>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                  <strong class="text-amber-900 block mb-1">02. Sabana &amp; Stepa</strong>
+                  <span class="text-xs text-slate-600">Sabana berupa padang rumput diselingi pepohonan (Nusa Tenggara, Afrika); Stepa berupa padang rumput luas tanpa pohon.</span>
+                </div>
+                <div class="bg-sky-50 p-4 rounded-xl border border-sky-100">
+                  <strong class="text-sky-900 block mb-1">03. Taiga &amp; Tundra</strong>
+                  <span class="text-xs text-slate-600">Taiga didominasi hutan konifer/pinus di lintang tinggi; Tundra berada di lingkar kutub dengan vegetasi lumut kerak (<em>lichen</em>).</span>
+                </div>
               </div>
+            </article>
 
+            <article class="card">
+              <h3 class="text-xl font-extrabold text-slate-900 mb-2">Kawasan Konservasi di Indonesia (Insitu &amp; Eksitu)</h3>
+              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                <strong>Konservasi Insitu</strong> adalah pelestarian flora dan fauna langsung di dalam habitat aslinya (Taman Nasional, Cagar Alam, Suaka Margasatwa). <strong>Konservasi Eksitu</strong> adalah pelestarian di luar habitat aslinya (Kebun Raya, Kebun Binatang, Taman Safari).
+              </p>
               <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
                 <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50">
                   <span class="font-bold text-emerald-900 block mb-1">🏞️ Taman Nasional</span>
-                  <p class="text-slate-700">Kawasan pelestarian alam dengan sistem zonasi untuk penelitian, pendidikan, dan ekowisata.<br><em>Contoh:</em> TN Komodo, TN Lorentz, TN Ujung Kulon.</p>
+                  <p class="text-slate-700">Kawasan pelestarian alam dengan sistem zonasi untuk penelitian, pendidikan, dan ekowisata (TN Komodo, TN Lorentz, TN Ujung Kulon).</p>
                 </div>
                 <div class="p-3 rounded-xl border border-sky-200 bg-sky-50">
                   <span class="font-bold text-sky-900 block mb-1">🌿 Cagar Alam</span>
-                  <p class="text-slate-700">Kawasan suaka alam yang memiliki kekhasan tumbuhan dan ekosistem alami yang dibiarkan berkembang secara alami.<br><em>Contoh:</em> CA Rafflesia Bengkulu.</p>
+                  <p class="text-slate-700">Kawasan suaka alam yang memiliki kekhasan tumbuhan dan ekosistem alami yang dibiarkan berkembang alami (CA Rafflesia Bengkulu).</p>
                 </div>
                 <div class="p-3 rounded-xl border border-amber-200 bg-amber-50">
                   <span class="font-bold text-amber-900 block mb-1">🦏 Suaka Margasatwa</span>
-                  <p class="text-slate-700">Kawasan suaka alam yang ditujukan khusus untuk melindungi keanekaragaman dan kelangsungan hidup satwa langka.<br><em>Contoh:</em> SM Way Kambas, SM Pulau Rambut.</p>
+                  <p class="text-slate-700">Kawasan suaka alam yang ditujukan khusus melindungi keanekaragaman satwa langka (SM Way Kambas, SM Pulau Rambut).</p>
                 </div>
                 <div class="p-3 rounded-xl border border-violet-200 bg-violet-50">
                   <span class="font-bold text-violet-900 block mb-1">🌳 Taman Hutan Raya</span>
-                  <p class="text-slate-700">Kawasan pelestarian alam untuk koleksi tumbuhan dan/atau satwa alami maupun bukan alami.<br><em>Contoh:</em> Tahura Ir. H. Djuanda (Bandung).</p>
+                  <p class="text-slate-700">Kawasan pelestarian alam untuk koleksi tumbuhan dan satwa alami maupun bukan alami (Tahura Ir. H. Djuanda).</p>
                 </div>
               </div>
             </article>
           </section>
 
-          <!-- Subbab F Bab 2 -->
-          <section id="m2-matching" class="subchapter-view mt-5">
+          <!-- Subbab D Materi 01: Matching Game -->
+          <section id="m1-matching" class="subchapter-view mt-5">
             <article class="card">
               <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
                 <div>
-                  <h3 class="font-extrabold text-xl text-slate-900">F. Kuis Pasang Istilah & Definisi Bab 2</h3>
+                  <h3 class="font-extrabold text-xl text-slate-900">Kuis Pasang Istilah &amp; Definisi Biosfer</h3>
                   <p class="text-xs text-slate-500">Klik istilah di sebelah kiri, lalu klik pasangan definisi yang sesuai di sebelah kanan.</p>
                 </div>
                 <span id="match-count-badge" class="text-xs bg-sky-100 text-sky-800 font-bold px-3 py-1 rounded-full">0 / 6 Terpasang</span>
@@ -728,58 +382,391 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
             </article>
           </section>
 
-          <!-- Subbab G Bab 2 -->
-          <section id="m2-refleksi" class="subchapter-view mt-5">
+          <!-- Subbab E Materi 01: Kuis Latihan Materi 01 -->
+          <section id="m1-kuis" class="subchapter-view mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold text-slate-900">G. Refleksi Pembelajaran Bab 2</h3>
-              <p class="text-sm text-slate-600 mt-1 mb-4">Beri tanda centang pada poin-poin materi yang telah kamu kuasai:</p>
-
-              <div class="space-y-2 text-sm text-slate-800">
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Paham faktor klimatik, edafik, fisiografis, dan biotik dalam persebaran flora-fauna</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami karakteristik berbagai bioma utama di dunia</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Mampu membedakan zona Asiatis, Peralihan, dan Australis beserta garis Wallace-Weber</label>
-                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Memahami perbedaan konservasi insitu dan eksitu di Indonesia</label>
+              <div class="flex items-center justify-between border-b pb-3 mb-4 flex-wrap gap-2">
+                <div>
+                  <h3 class="text-xl font-extrabold text-slate-900">Kuis Latihan Materi 01: Biosfer &amp; Keanekaragaman Hayati</h3>
+                  <p class="text-xs text-slate-500">Uji pemahamanmu mengenai biosfer, keanekaragaman hayati, persebaran flora-fauna, dan konservasi.</p>
+                </div>
+                <span id="m1-quiz-counter" class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-full">Soal 1 / 10</span>
               </div>
 
-              <label for="module2-notes" class="mt-5 block font-bold text-sm text-slate-900">Catatan Pemahaman &amp; Pertanyaan Refleksi Siswa:</label>
-              <textarea id="module2-notes" class="mt-2 w-full rounded-xl border p-3 text-sm" rows="3" placeholder="Tuliskan poin yang paling kamu pahami atau kendala belajar yang ditemui..."></textarea>
-              <button id="save-m2-btn" type="button" class="mt-4 rounded-xl bg-violet-700 px-5 py-3 font-bold text-white hover:bg-violet-800">Simpan Jawaban Bab 2 ke Guru</button>
+              <div id="m1-quiz-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <p id="m1-quiz-question-text" class="font-extrabold text-base text-slate-900 leading-relaxed mb-4">Memuat soal kuis...</p>
+                <div id="m1-quiz-options-container" class="space-y-2 text-sm"></div>
+                <div id="m1-quiz-feedback" class="mt-4 p-3 rounded-xl hidden text-xs font-bold leading-relaxed"></div>
+                <div class="mt-6 flex justify-between items-center flex-wrap gap-3 pt-3 border-t">
+                  <button id="btn-m1-quiz-prev" type="button" class="border bg-white px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">← Soal Sebelumnya</button>
+                  <button id="btn-m1-quiz-next" type="button" class="bg-emerald-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800">Soal Berikutnya →</button>
+                </div>
+              </div>
+
+              <div id="m1-quiz-result-card" class="mt-4 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 hidden text-center">
+                <i data-lucide="award" class="w-12 h-12 text-emerald-600 mx-auto mb-2"></i>
+                <h4 class="text-xl font-extrabold text-emerald-900">Kuis Latihan Materi 01 Selesai!</h4>
+                <p id="m1-quiz-score-text" class="text-3xl font-extrabold text-emerald-700 mt-2">Nilai: 0 / 100</p>
+                <button id="btn-m1-quiz-restart" type="button" class="mt-4 bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-emerald-800">Ulangi Kuis Materi 01</button>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab F Materi 01: Refleksi -->
+          <section id="m1-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold">Refleksi Pembelajaran Materi 01</h3>
+              <div class="mt-4 space-y-2 text-sm">
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami pengertian biosfer dan tiga tingkat keanekaragaman hayati (gen, jenis, ekosistem)</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya bisa membedakan persebaran fauna Asiatis, Peralihan, dan Australis beserta garis Wallace-Weber</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami faktor iklim, tanah, relief, dan sejarah geologi dalam persebaran flora-fauna</label>
+              </div>
+              <label for="module1-notes" class="mt-5 block font-bold text-sm">Catatan Refleksi Siswa:</label>
+              <textarea id="module1-notes" class="mt-2 w-full rounded-xl border p-3 text-sm" rows="3" placeholder="Tulis catatan atau pertanyaanmu di sini..."></textarea>
+              <button id="save-m1-btn" type="button" class="mt-4 rounded-xl bg-sky-700 px-5 py-3 font-bold text-white hover:bg-sky-800">Simpan Jawaban ke Guru</button>
             </article>
           </section>
         </section>
 
-        <!-- BAB 3: LINGKUNGAN HIDUP DAN KEPENDUDUKAN -->
-        <section id="module3" class="module-view mt-6 search-target">
+        <!-- MATERI 02: SUMBER DAYA ALAM & LINGKUNGAN -->
+        <section id="module2" class="module-view mt-6 search-target">
           <article class="card student-card">
-            <p class="text-sm font-bold uppercase tracking-widest text-teal-700">Bab 3 • Geografi SMA Kelas 11</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Lingkungan Hidup dan Dinamika Kependudukan</h2>
-            <p class="mt-3 text-slate-600">Memahami kualitas lingkungan hidup, daya dukung lingkungan, serta dinamika kependudukan dan pemanfaatan Bonus Demografi Indonesia.</p>
+            <p class="text-sm font-bold uppercase tracking-widest text-teal-700">Materi 02 • Geografi SMA Kelas XI</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Sumber Daya Alam &amp; Lingkungan</h2>
+            <p class="mt-2 text-slate-600 leading-relaxed">Alam menyediakan kebutuhan hidup. Tantangannya adalah memanfaatkannya dengan bijak tanpa mengurangi kesempatan generasi berikutnya.</p>
+            <div class="mt-3 inline-flex items-center gap-2 rounded-xl bg-teal-50 border border-teal-200 px-3 py-1.5 text-xs font-bold text-teal-900">
+              <i data-lucide="target" class="w-4 h-4 text-teal-700"></i>
+              <span>Tujuan Belajar: Membedakan potensi SDA, bentuk pemanfaatan, dan cara pelestariannya.</span>
+            </div>
           </article>
 
-          <nav class="mt-5 flex flex-wrap gap-2 no-print">
-            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-uji-fakta">A. Uji Analisis Demografi</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-piramida">B. Piramida Penduduk & IPM</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-refleksi">C. Refleksi Bab 3</button>
+          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Materi 02">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-inti">A. Inti Materi SDA</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-aktivitas">B. Aktivitas: Kelompokkan SDA</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-diagram">C. Persebaran &amp; Diagram Data SDA</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-kuis">D. Kuis Latihan Materi 02</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m2-refleksi">E. Refleksi Materi 02</button>
           </nav>
 
-          <section id="m3-uji-fakta" class="subchapter-view active mt-5">
-            <article class="card">
-              <h3 class="text-xl font-extrabold">A. Kuis Interaktif: Analisis Pernyataan Kependudukan & Lingkungan</h3>
-              <p class="mt-2 text-slate-600">Bacalah pernyataan berikut dan tentukan apakah pernyataan tersebut tepat secara ilmiah dalam Geografi Kependudukan:</p>
-              <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
-                <p class="font-bold text-amber-900">"Bonus Demografi otomatis menjamin kemajuan ekonomi suatu negara meskipun kualitas pendidikan, kesehatan, dan lapangan kerja penduduk usia produktifnya rendah."</p>
-                <div class="mt-3 flex gap-3">
-                  <button type="button" onclick="checkGeoMyth(true)" class="bg-rose-600 text-white font-bold px-4 py-2 rounded-xl text-sm">Pernyataan KELIRU</button>
-                  <button type="button" onclick="checkGeoMyth(false)" class="bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-sm">Pernyataan BENAR</button>
+          <!-- Subbab A Materi 02: Inti Materi -->
+          <section id="m2-inti" class="subchapter-view active mt-5 space-y-5">
+            <div class="grid md:grid-cols-2 gap-4">
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 grid place-items-center mb-3">
+                  <i data-lucide="sprout" class="w-5 h-5"></i>
                 </div>
-                <p id="geo-myth-result" class="mt-2 text-sm font-bold"></p>
+                <h3 class="text-lg font-extrabold text-slate-900">1. Potensi &amp; Jenis SDA</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <strong>SDA hayati</strong> berasal dari makhluk hidup (flora dan fauna), sedangkan <strong>SDA nonhayati</strong> mencakup air, tanah, mineral, dan energi. Berdasarkan kelestariannya, ada yang <strong>dapat diperbarui</strong> (<em>renewable</em>) dan ada yang <strong>terbatas / tidak dapat diperbarui</strong> (<em>non-renewable</em>).
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 grid place-items-center mb-3">
+                  <i data-lucide="pickaxe" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">2. Pemanfaatan SDA</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Pertanian memanfaatkan tanah dan air; perikanan memanfaatkan ekosistem perairan; pertambangan mengambil bahan galian. Nilai ekonomi pemanfaatan perlu diseimbangkan dengan <strong>daya dukung lingkungan</strong>.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-teal-100 text-teal-800 grid place-items-center mb-3">
+                  <i data-lucide="recycle" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">3. Pelestarian Lingkungan</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  <strong>Reboisasi</strong> lahan rusak, hemat air dan energi, pengelolaan limbah, kawasan konservasi, serta <strong>rehabilitasi &amp; reklamasi lahan</strong> membantu menjaga fungsi ekosistem agar tetap lestari.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-800 grid place-items-center mb-3">
+                  <i data-lucide="scale" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">4. Prinsip Berkelanjutan</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Gunakan sumber daya sesuai kebutuhan, kurangi kerusakan (ekoefisiensi &amp; AMDAL), dan pulihkan lingkungan setelah pemanfaatan. SDA yang dapat diperbarui tetap bisa menipis bila dieksploitasi berlebihan.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Subbab B Materi 02: Aktivitas 02 Kelompokkan Sumber Dayanya -->
+          <section id="m2-aktivitas" class="subchapter-view mt-5">
+            <article class="card bg-teal-50/60 border-teal-200">
+              <div class="flex justify-between items-start flex-wrap gap-2">
+                <div>
+                  <span class="text-xs font-bold uppercase text-teal-700">Aktivitas 02 • Klasifikasi Cepat</span>
+                  <h3 class="text-xl font-extrabold text-slate-900 mt-1">Kelompokkan Sumber Dayanya</h3>
+                  <p class="text-sm text-slate-600">Tentukan apakah sumber daya berikut dapat diperbarui dalam skala waktu manusia.</p>
+                </div>
+                <span id="resource-counter" class="text-xs bg-white border border-teal-200 text-teal-800 font-extrabold px-3 py-1.5 rounded-full">CONTOH 1 DARI 4</span>
+              </div>
+
+              <div class="progress-bar-bg my-4">
+                <div id="resource-progress" class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-white border-l-4 border-amber-500 shadow-sm">
+                <div id="resource-name" class="text-xl font-extrabold text-slate-900">Sinar matahari</div>
+                <div id="resource-btn-group" class="flex flex-wrap gap-3 mt-4">
+                  <button type="button" class="resource-answer-btn rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-800 hover:bg-sky-700 hover:text-white" data-answer="terbarukan">Dapat diperbarui</button>
+                  <button type="button" class="resource-answer-btn rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-800 hover:bg-sky-700 hover:text-white" data-answer="tak-terbarukan">Tidak dapat diperbarui</button>
+                </div>
+                <div id="resource-feedback" class="mt-3 text-sm font-bold text-emerald-800 min-h-[22px]"></div>
+                <button id="resource-next" type="button" class="hidden mt-3 bg-sky-700 text-white font-bold px-4 py-2 rounded-xl text-xs hover:bg-sky-800">Contoh berikutnya →</button>
               </div>
             </article>
           </section>
 
-          <section id="m3-piramida" class="subchapter-view mt-5">
+          <!-- Subbab C Materi 02: Persebaran & Diagram Data -->
+          <section id="m2-diagram" class="subchapter-view mt-5 space-y-5">
+            <article class="card">
+              <h3 class="text-lg font-extrabold text-slate-900 mb-3">Tabel Persebaran Komoditas Utama Indonesia</h3>
+              <div class="overflow-x-auto border rounded-xl bg-white p-2">
+                <table class="w-full text-sm text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-800 text-white font-bold">
+                      <th class="p-2.5 border border-slate-700">Sektor SDA</th>
+                      <th class="p-2.5 border border-slate-700">Komoditas Unggulan</th>
+                      <th class="p-2.5 border border-slate-700">Wilayah Persebaran Utama</th>
+                      <th class="p-2.5 border border-slate-700">Strategi Konservasi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200">
+                    <tr>
+                      <td class="p-2.5 font-semibold">Kehutanan</td>
+                      <td class="p-2.5">Meranti, Ulin, Rotan, Mangrove</td>
+                      <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Kalimantan, Sumatra, Papua</td>
+                      <td class="p-2.5 text-emerald-700 font-bold">Tebang Pilih &amp; Reboisasi</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-semibold">Pertambangan</td>
+                      <td class="p-2.5">Nikel, Timah, Tembaga, Batu Bara</td>
+                      <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Sulawesi, Bangka Belitung, Papua</td>
+                      <td class="p-2.5 text-emerald-700 font-bold">AMDAL &amp; Reklamasi Lahan</td>
+                    </tr>
+                    <tr>
+                      <td class="p-2.5 font-semibold">Kelautan</td>
+                      <td class="p-2.5">Tuna, Cakalang, Rumput Laut, Terumbu Karang</td>
+                      <td class="p-2.5 bg-sky-50 text-sky-900 font-medium">Laut Banda, Arafura, Sulawesi</td>
+                      <td class="p-2.5 text-emerald-700 font-bold">WPPNRI &amp; Zona Konservasi Laut</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3 class="text-lg font-extrabold text-slate-900 mb-3">Visualisasi Data Geografi Sumber Daya Alam</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-slate-900 rounded-xl p-4 text-white">
+                  <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Perbandingan Sebaran Cadangan Bijih Nikel (Juta Ton)</p>
+                  <svg viewBox="0 0 400 180" class="w-full h-44">
+                    <line x1="40" y1="20" x2="380" y2="20" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="60" x2="380" y2="60" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="100" x2="380" y2="100" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="140" x2="380" y2="140" stroke="#94a3b8" stroke-width="2" />
+                    <text x="30" y="25" fill="#94a3b8" font-size="10" text-anchor="end">100</text>
+                    <text x="30" y="65" fill="#94a3b8" font-size="10" text-anchor="end">75</text>
+                    <text x="30" y="105" fill="#94a3b8" font-size="10" text-anchor="end">50</text>
+                    <text x="30" y="145" fill="#94a3b8" font-size="10" text-anchor="end">0</text>
+                    <rect x="70" y="36" width="45" height="104" rx="4" fill="#38bdf8" />
+                    <text x="92.5" y="28" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">88</text>
+                    <text x="92.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Sultra</text>
+                    <rect x="175" y="48" width="45" height="92" rx="4" fill="#34d399" />
+                    <text x="197.5" y="40" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle">76</text>
+                    <text x="197.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Sulteng</text>
+                    <rect x="280" y="62" width="45" height="78" rx="4" fill="#fbbf24" />
+                    <text x="302.5" y="54" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">65</text>
+                    <text x="302.5" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">Malut</text>
+                  </svg>
+                </div>
+
+                <div class="bg-slate-900 rounded-xl p-4 text-white">
+                  <p class="text-xs font-mono text-slate-400 mb-2 border-b border-slate-800 pb-1">Tren Kapasitas Terpasang Energi Geothermal (MW)</p>
+                  <svg viewBox="0 0 400 180" class="w-full h-44">
+                    <line x1="40" y1="20" x2="380" y2="20" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="60" x2="380" y2="60" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="100" x2="380" y2="100" stroke="#334155" stroke-dasharray="4" />
+                    <line x1="40" y1="140" x2="380" y2="140" stroke="#94a3b8" stroke-width="2" />
+                    <text x="30" y="25" fill="#94a3b8" font-size="10" text-anchor="end">3000</text>
+                    <text x="30" y="65" fill="#94a3b8" font-size="10" text-anchor="end">2250</text>
+                    <text x="30" y="105" fill="#94a3b8" font-size="10" text-anchor="end">1500</text>
+                    <text x="80" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2020</text>
+                    <text x="210" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2023</text>
+                    <text x="340" y="158" fill="#cbd5e1" font-size="11" text-anchor="middle">2026</text>
+                    <polyline fill="none" stroke="#38bdf8" stroke-width="3" points="80,96 210,64 340,28" />
+                    <polygon fill="rgba(56, 189, 248, 0.15)" points="80,140 80,96 210,64 340,28 340,140" />
+                    <circle cx="80" cy="96" r="5" fill="#38bdf8" />
+                    <text x="80" y="84" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.130</text>
+                    <circle cx="210" cy="64" r="5" fill="#38bdf8" />
+                    <text x="210" y="52" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.418</text>
+                    <circle cx="340" cy="28" r="5" fill="#38bdf8" />
+                    <text x="340" y="16" fill="#38bdf8" font-size="10" font-weight="bold" text-anchor="middle">2.890</text>
+                  </svg>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab D Materi 02: Kuis Latihan Materi 02 -->
+          <section id="m2-kuis" class="subchapter-view mt-5">
+            <article class="card">
+              <div class="flex items-center justify-between border-b pb-3 mb-4 flex-wrap gap-2">
+                <div>
+                  <h3 class="text-xl font-extrabold text-slate-900">Kuis Latihan Materi 02: Sumber Daya Alam &amp; Lingkungan</h3>
+                  <p class="text-xs text-slate-500">Uji pemahamanmu mengenai klasifikasi SDA, pemanfaatan, pelestarian, dan pengelolaan berkelanjutan.</p>
+                </div>
+                <span id="m2-quiz-counter" class="text-xs bg-teal-100 text-teal-800 font-bold px-3 py-1.5 rounded-full">Soal 1 / 10</span>
+              </div>
+
+              <div id="m2-quiz-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <p id="m2-quiz-question-text" class="font-extrabold text-base text-slate-900 leading-relaxed mb-4">Memuat soal kuis...</p>
+                <div id="m2-quiz-options-container" class="space-y-2 text-sm"></div>
+                <div id="m2-quiz-feedback" class="mt-4 p-3 rounded-xl hidden text-xs font-bold leading-relaxed"></div>
+                <div class="mt-6 flex justify-between items-center flex-wrap gap-3 pt-3 border-t">
+                  <button id="btn-m2-quiz-prev" type="button" class="border bg-white px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">← Soal Sebelumnya</button>
+                  <button id="btn-m2-quiz-next" type="button" class="bg-teal-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-teal-800">Soal Berikutnya →</button>
+                </div>
+              </div>
+
+              <div id="m2-quiz-result-card" class="mt-4 p-5 rounded-2xl bg-teal-50 border border-teal-200 hidden text-center">
+                <i data-lucide="award" class="w-12 h-12 text-teal-600 mx-auto mb-2"></i>
+                <h4 class="text-xl font-extrabold text-teal-900">Kuis Latihan Materi 02 Selesai!</h4>
+                <p id="m2-quiz-score-text" class="text-3xl font-extrabold text-teal-700 mt-2">Nilai: 0 / 100</p>
+                <button id="btn-m2-quiz-restart" type="button" class="mt-4 bg-teal-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-teal-800">Ulangi Kuis Materi 02</button>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab E Materi 02: Refleksi -->
+          <section id="m2-refleksi" class="subchapter-view mt-5">
+            <article class="card">
+              <h3 class="text-xl font-extrabold text-slate-900">Refleksi Pembelajaran Materi 02</h3>
+              <div class="mt-4 space-y-2 text-sm">
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya mampu membedakan SDA hayati/nonhayati serta SDA dapat diperbarui/tidak dapat diperbarui</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami bentuk pelestarian lingkungan seperti reboisasi, konservasi, dan reklamasi lahan</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami prinsip pengelolaan SDA berkelanjutan dan AMDAL</label>
+              </div>
+              <label for="module2-notes" class="mt-5 block font-bold text-sm">Catatan Refleksi Siswa:</label>
+              <textarea id="module2-notes" class="mt-2 w-full rounded-xl border p-3 text-sm" rows="3" placeholder="Tuliskan catatan pemahamanmu di sini..."></textarea>
+              <button id="save-m2-btn" type="button" class="mt-4 rounded-xl bg-teal-700 px-5 py-3 font-bold text-white hover:bg-teal-800">Simpan Jawaban ke Guru</button>
+            </article>
+          </section>
+        </section>
+
+        <!-- MATERI 03: DINAMIKA KEPENDUDUKAN -->
+        <section id="module3" class="module-view mt-6 search-target">
+          <article class="card student-card">
+            <p class="text-sm font-bold uppercase tracking-widest text-sky-700">Materi 03 • Geografi SMA Kelas XI</p>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Dinamika Kependudukan</h2>
+            <p class="mt-2 text-slate-600 leading-relaxed">Jumlah penduduk terus berubah. Data kependudukan membantu kita memahami kebutuhan ruang, layanan, dan pembangunan.</p>
+            <div class="mt-3 inline-flex items-center gap-2 rounded-xl bg-sky-50 border border-sky-200 px-3 py-1.5 text-xs font-bold text-sky-900">
+              <i data-lucide="target" class="w-4 h-4 text-sky-700"></i>
+              <span>Tujuan Belajar: Menjelaskan pertumbuhan, persebaran, komposisi, serta permasalahan penduduk.</span>
+            </div>
+          </article>
+
+          <nav class="mt-5 flex flex-wrap gap-2 no-print" aria-label="Subbab Materi 03">
+            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-inti">A. Inti Materi Kependudukan</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-simulasi">B. Aktivitas: Simulasi Perubahan Penduduk</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-piramida">C. Piramida Penduduk &amp; Bonus Demografi</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-kuis">D. Kuis Latihan Materi 03</button>
+            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m3-refleksi">E. Refleksi Materi 03</button>
+          </nav>
+
+          <!-- Subbab A Materi 03: Inti Materi -->
+          <section id="m3-inti" class="subchapter-view active mt-5 space-y-5">
+            <div class="grid md:grid-cols-2 gap-4">
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-800 grid place-items-center mb-3">
+                  <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">1. Pertumbuhan Penduduk</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Perubahan jumlah penduduk dipengaruhi <strong>kelahiran (natalitas)</strong>, <strong>kematian (mortalitas)</strong>, <strong>imigrasi (migrasi masuk)</strong>, dan <strong>emigrasi (migrasi keluar)</strong>.<br>
+                  Rumus: <strong>Pertumbuhan Total = (Kelahiran − Kematian) + (Imigrasi − Emigrasi)</strong>.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 grid place-items-center mb-3">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">2. Persebaran Penduduk</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Penduduk tidak tersebar merata. Lapangan kerja, akses transportasi, kondisi fisik wilayah (kesuburan tanah &amp; topografi), dan kelengkapan fasilitas umum sangat memengaruhi kepadatan penduduk suatu daerah.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-violet-100 text-violet-800 grid place-items-center mb-3">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">3. Komposisi Penduduk</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Komposisi penduduk dapat dilihat menurut <strong>umur</strong>, <strong>jenis kelamin</strong>, <strong>pendidikan</strong>, dan <strong>pekerjaan</strong>. Struktur umur membantu pemerintah memperkirakan kebutuhan sekolah, layanan kesehatan, maupun lapangan kerja.
+                </p>
+              </article>
+
+              <article class="card">
+                <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-800 grid place-items-center mb-3">
+                  <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">4. Permasalahan Kependudukan</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Kepadatan penduduk tinggi di perkotaan, pengangguran, ketimpangan layanan pendidikan dan kesehatan, serta tekanan terhadap daya dukung lingkungan dapat muncul jika pertumbuhan tidak diimbangi perencanaan wilayah.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- Subbab B Materi 03: Aktivitas 03 Simulasi Perubahan Penduduk -->
+          <section id="m3-simulasi" class="subchapter-view mt-5">
+            <article class="card bg-sky-50/60 border-sky-200">
+              <div class="flex justify-between items-start flex-wrap gap-2">
+                <div>
+                  <span class="text-xs font-bold uppercase text-sky-700">Aktivitas 03 • Kalkulator Demografi</span>
+                  <h3 class="text-xl font-extrabold text-slate-900 mt-1">Simulasi Perubahan Penduduk</h3>
+                  <p class="text-sm text-slate-600">Masukkan jumlah kejadian dalam satu tahun dan amati perubahan total penduduk.</p>
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 my-4">
+                <div>
+                  <label for="births" class="block text-xs font-bold text-slate-700 mb-1">Kelahiran (Jiwa)</label>
+                  <input id="births" type="number" min="0" value="120" class="w-full border border-sky-300 rounded-xl bg-white px-3 py-2 text-sm font-bold">
+                </div>
+                <div>
+                  <label for="deaths" class="block text-xs font-bold text-slate-700 mb-1">Kematian (Jiwa)</label>
+                  <input id="deaths" type="number" min="0" value="40" class="w-full border border-sky-300 rounded-xl bg-white px-3 py-2 text-sm font-bold">
+                </div>
+                <div>
+                  <label for="immigration" class="block text-xs font-bold text-slate-700 mb-1">Imigrasi / Masuk (Jiwa)</label>
+                  <input id="immigration" type="number" min="0" value="30" class="w-full border border-sky-300 rounded-xl bg-white px-3 py-2 text-sm font-bold">
+                </div>
+                <div>
+                  <label for="emigration" class="block text-xs font-bold text-slate-700 mb-1">Emigrasi / Keluar (Jiwa)</label>
+                  <input id="emigration" type="number" min="0" value="10" class="w-full border border-sky-300 rounded-xl bg-white px-3 py-2 text-sm font-bold">
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-white border-l-4 border-amber-500 shadow-sm">
+                <div class="text-xs font-extrabold uppercase text-sky-800">PERUBAHAN TOTAL PENDUDUK</div>
+                <div id="population-result" class="text-2xl font-extrabold text-slate-900 mt-1">+100 orang</div>
+                <div class="text-xs text-slate-500 font-mono mt-1">Rumus: (Kelahiran − Kematian) + (Imigrasi − Emigrasi)</div>
+                <p id="population-note" class="text-sm font-bold text-emerald-700 mt-2">Jumlah penduduk bertambah dalam periode ini.</p>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab C Materi 03: Piramida & Bonus Demografi -->
+          <section id="m3-piramida" class="subchapter-view mt-5 space-y-5">
             <article class="card space-y-4">
-              <h3 class="text-xl font-extrabold">B. Tiga Bentuk Piramida Penduduk & Kualitas SDM</h3>
+              <h3 class="text-xl font-extrabold">Tiga Bentuk Piramida Penduduk &amp; Kualitas SDM</h3>
               <div class="grid md:grid-cols-3 gap-4 text-sm">
                 <div class="p-4 rounded-xl border border-sky-100 bg-sky-50">
                   <strong class="text-sky-900 block mb-1">1. Piramida Ekspansif (Muda)</strong>
@@ -797,75 +784,59 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
               <p class="text-sm text-slate-600 leading-relaxed">
                 Kualitas penduduk diukur melalui <strong>Indeks Pembangunan Manusia (IPM)</strong> yang mencakup tiga dimensi dasar: umur panjang dan hidup sehat (kesehatan), pengetahuan (pendidikan), serta standar hidup layak (ekonomi).
               </p>
+
+              <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+                <p class="text-xs font-extrabold uppercase text-amber-800 mb-1">Uji Analisis Cepat:</p>
+                <p class="font-bold text-amber-900 text-sm">"Bonus Demografi otomatis menjamin kemajuan ekonomi suatu negara meskipun kualitas pendidikan, kesehatan, dan lapangan kerja penduduk usia produktifnya rendah."</p>
+                <div class="mt-3 flex gap-3">
+                  <button type="button" onclick="checkGeoMyth(true)" class="bg-rose-600 text-white font-bold px-4 py-2 rounded-xl text-xs">Pernyataan KELIRU</button>
+                  <button type="button" onclick="checkGeoMyth(false)" class="bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs">Pernyataan BENAR</button>
+                </div>
+                <p id="geo-myth-result" class="mt-2 text-xs font-bold"></p>
+              </div>
             </article>
           </section>
 
+          <!-- Subbab D Materi 03: Kuis Latihan Materi 03 -->
+          <section id="m3-kuis" class="subchapter-view mt-5">
+            <article class="card">
+              <div class="flex items-center justify-between border-b pb-3 mb-4 flex-wrap gap-2">
+                <div>
+                  <h3 class="text-xl font-extrabold text-slate-900">Kuis Latihan Materi 03: Dinamika Kependudukan</h3>
+                  <p class="text-xs text-slate-500">Uji pemahamanmu mengenai perhitungan pertumbuhan penduduk, persebaran, komposisi, dan permasalahan demografi.</p>
+                </div>
+                <span id="m3-quiz-counter" class="text-xs bg-sky-100 text-sky-800 font-bold px-3 py-1.5 rounded-full">Soal 1 / 10</span>
+              </div>
+
+              <div id="m3-quiz-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <p id="m3-quiz-question-text" class="font-extrabold text-base text-slate-900 leading-relaxed mb-4">Memuat soal kuis...</p>
+                <div id="m3-quiz-options-container" class="space-y-2 text-sm"></div>
+                <div id="m3-quiz-feedback" class="mt-4 p-3 rounded-xl hidden text-xs font-bold leading-relaxed"></div>
+                <div class="mt-6 flex justify-between items-center flex-wrap gap-3 pt-3 border-t">
+                  <button id="btn-m3-quiz-prev" type="button" class="border bg-white px-4 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">← Soal Sebelumnya</button>
+                  <button id="btn-m3-quiz-next" type="button" class="bg-sky-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-sky-800">Soal Berikutnya →</button>
+                </div>
+              </div>
+
+              <div id="m3-quiz-result-card" class="mt-4 p-5 rounded-2xl bg-sky-50 border border-sky-200 hidden text-center">
+                <i data-lucide="award" class="w-12 h-12 text-sky-600 mx-auto mb-2"></i>
+                <h4 class="text-xl font-extrabold text-sky-900">Kuis Latihan Materi 03 Selesai!</h4>
+                <p id="m3-quiz-score-text" class="text-3xl font-extrabold text-sky-700 mt-2">Nilai: 0 / 100</p>
+                <button id="btn-m3-quiz-restart" type="button" class="mt-4 bg-sky-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-sky-800">Ulangi Kuis Materi 03</button>
+              </div>
+            </article>
+          </section>
+
+          <!-- Subbab E Materi 03: Refleksi -->
           <section id="m3-refleksi" class="subchapter-view mt-5">
             <article class="card">
-              <h3 class="text-xl font-extrabold">C. Refleksi Bab 3</h3>
-              <div class="mt-3 space-y-2">
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami bentuk piramida penduduk dan syarat pemanfaatan Bonus Demografi</label>
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami hubungan daya dukung lingkungan dengan pertumbuhan penduduk</label>
+              <h3 class="text-xl font-extrabold">Refleksi Pembelajaran Materi 03</h3>
+              <div class="mt-3 space-y-2 text-sm">
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya mampu menghitung pertumbuhan penduduk total dari data kelahiran, kematian, imigrasi, dan emigrasi</label>
+                <label class="flex gap-2 items-center cursor-pointer"><input class="progress-check" type="checkbox"> Saya memahami faktor persebaran, komposisi umur, piramida penduduk, dan permasalahan kependudukan</label>
               </div>
-              <textarea id="module3-notes" class="mt-3 w-full rounded-xl border p-3" rows="3" placeholder="Catatan refleksi Bab 3..."></textarea>
-              <button id="save-m3-btn" type="button" class="mt-3 rounded-xl bg-teal-700 px-5 py-3 font-bold text-white hover:bg-teal-800">Simpan Jawaban Bab 3</button>
-            </article>
-          </section>
-        </section>
-
-        <!-- BAB 4: MITIGASI DAN ADAPTASI BENCANA ALAM -->
-        <section id="module4" class="module-view mt-6 search-target">
-          <article class="card student-card">
-            <p class="text-sm font-bold uppercase tracking-widest text-rose-700">Bab 4 • Geografi SMA Kelas 11</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Mitigasi dan Adaptasi Bencana Alam</h2>
-            <p class="mt-3 text-slate-600">Memahami jenis bencana geologis, hidrometeorologis, siklus penanggulangan bencana, dan kearifan lokal mitigasi di Indonesia.</p>
-          </article>
-
-          <nav class="mt-5 flex flex-wrap gap-2 no-print">
-            <button type="button" class="subchapter-button active rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-simulasi-bencana">A. Simulasi Respon Bencana</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-siklus">B. Siklus & Kearifan Lokal</button>
-            <button type="button" class="subchapter-button rounded-xl px-3.5 py-2 text-sm" data-subchapter="m4-refleksi">C. Refleksi Bab 4</button>
-          </nav>
-
-          <section id="m4-simulasi-bencana" class="subchapter-view active mt-5">
-            <article class="card">
-              <h3 class="text-xl font-extrabold">A. Panduan Interaktif Protokol Mitigasi Bencana</h3>
-              <p class="mt-2 text-sm text-slate-600">Pilih jenis bencana alam di bawah ini untuk melihat langkah evakuasi dan mitigasi yang paling tepat:</p>
-              <select id="disaster-select-input" class="mt-3 w-full border rounded-xl p-3 font-bold bg-white">
-                <option value="">-- Pilih Jenis Ancaman Bencana --</option>
-                <option value="gempa">Gempa Bumi Tektonik</option>
-                <option value="tsunami">Tsunami di Wilayah Pesisir</option>
-                <option value="erupsi">Erupsi Gunung Api</option>
-                <option value="longsor">Tanah Longsor di Lereng Curam</option>
-              </select>
-              <div class="mt-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <span class="text-xs font-bold uppercase text-slate-500 block mb-1">Protokol Keselamatan Utama:</span>
-                <p id="disaster-protocol-label" class="text-sm font-extrabold text-slate-700">Silakan pilih jenis bencana terlebih dahulu.</p>
-              </div>
-            </article>
-          </section>
-
-          <section id="m4-siklus" class="subchapter-view mt-5">
-            <article class="card space-y-3">
-              <h3 class="text-xl font-extrabold">B. Siklus Manajemen Bencana & Kearifan Lokal Nusantara</h3>
-              <p class="text-sm leading-relaxed text-slate-700">
-                Manajemen bencana terdiri dari 3 tahap utama: <strong>Pra-bencana</strong> (pencegahan, mitigasi struktural/non-struktural, kesiapsiagaan), <strong>Tanggap Darurat</strong> (evakuasi dan penyelamatan), serta <strong>Pasca-bencana</strong> (rehabilitasi dan rekonstruksi).
-              </p>
-              <p class="text-sm leading-relaxed text-slate-700">
-                Indonesia memiliki kekayaan kearifan lokal mitigasi seperti tradisi <strong>Smong</strong> di Pulau Simeulue (Aceh) sebagai peringatan dini tsunami, serta rumah panggung tahan gempa di berbagai daerah Nusantara.
-              </p>
-            </article>
-          </section>
-
-          <section id="m4-refleksi" class="subchapter-view mt-5">
-            <article class="card">
-              <h3 class="text-xl font-extrabold">C. Refleksi Bab 4</h3>
-              <div class="mt-3 space-y-2">
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami perbedaan mitigasi struktural dan non-struktural</label>
-                <label class="flex gap-2 items-center"><input class="progress-check" type="checkbox"> Saya memahami prosedur keselamatan saat gempa bumi dan tsunami</label>
-              </div>
-              <textarea id="module4-notes" class="mt-3 w-full rounded-xl border p-3" rows="3" placeholder="Catatan refleksi Bab 4..."></textarea>
-              <button id="save-m4-btn" type="button" class="mt-3 rounded-xl bg-rose-700 px-5 py-3 font-bold text-white hover:bg-rose-800">Simpan Jawaban Bab 4</button>
+              <textarea id="module3-notes" class="mt-3 w-full rounded-xl border p-3 text-sm" rows="3" placeholder="Catatan refleksi Materi 03..."></textarea>
+              <button id="save-m3-btn" type="button" class="mt-3 rounded-xl bg-sky-700 px-5 py-3 font-bold text-white hover:bg-sky-800">Simpan Jawaban ke Guru</button>
             </article>
           </section>
         </section>
@@ -874,7 +845,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         <section id="module-tugas" class="module-view mt-6">
           <div class="card border-l-4 border-teal-600">
             <h2 class="text-2xl font-extrabold text-slate-900">Pengumpulan Tugas Proyek Geografi</h2>
-            <p class="mt-1 text-slate-600 text-sm">Kirimkan hasil karya praktikummu (tautan Google Drive peta tematik, infografis flora-fauna, laporan analisis kependudukan, atau poster mitigasi bencana) di sini.</p>
+            <p class="mt-1 text-slate-600 text-sm">Kirimkan hasil karya praktikummu (tautan Google Drive / Canva peta persebaran flora-fauna, infografis konservasi SDA, atau laporan analisis kependudukan) di sini.</p>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-6 mt-6">
@@ -884,10 +855,9 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
               <label class="block text-sm font-bold mt-2">Judul / Topik Tugas</label>
               <select id="tugas-topic" required class="w-full border rounded-xl p-3 mt-1 bg-white">
                 <option value="">-- Pilih Topik Tugas --</option>
-                <option value="Peta Potensi SDA & Poros Maritim (Bab 1)">Peta Potensi SDA & Poros Maritim (Bab 1)</option>
-                <option value="Infografis Persebaran Flora & Fauna (Bab 2)">Infografis Persebaran Flora & Fauna (Bab 2)</option>
-                <option value="Analisis Piramida Penduduk & Lingkungan (Bab 3)">Analisis Piramida Penduduk & Lingkungan (Bab 3)</option>
-                <option value="Poster Jalur Evakuasi & Mitigasi Bencana (Bab 4)">Poster Jalur Evakuasi & Mitigasi Bencana (Bab 4)</option>
+                <option value="Peta Persebaran Flora & Fauna Indonesia (Materi 01)">Peta Persebaran Flora &amp; Fauna Indonesia (Materi 01)</option>
+                <option value="Infografis Pengelolaan & Pelestarian SDA (Materi 02)">Infografis Pengelolaan &amp; Pelestarian SDA (Materi 02)</option>
+                <option value="Analisis Pertumbuhan & Piramida Penduduk (Materi 03)">Analisis Pertumbuhan &amp; Piramida Penduduk (Materi 03)</option>
               </select>
 
               <label class="block text-sm font-bold mt-3">Tautan / Link Hasil Tugas</label>
@@ -908,13 +878,13 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
           </div>
         </section>
 
-        <!-- FITUR SIMULASI BAB (SISTEM PROCTORING & KAMERA) -->
+        <!-- FITUR KUIS EVALUASI (SISTEM PROCTORING & KAMERA) -->
         <section id="module-simulasi" class="module-view mt-6">
           <div class="card border-l-4 border-amber-500">
             <div class="flex justify-between items-center flex-wrap gap-3">
               <div>
-                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Simulasi Evaluasi Bab</h2>
-                <p class="mt-1 text-slate-600 text-sm">Uji pemahaman bab Geografi dengan sistem pengawasan kamera depan dan anti-kecurangan.</p>
+                <h2 class="text-2xl font-extrabold text-slate-900" id="simulasi-heading">Kuis Evaluasi Geografi Kelas XI</h2>
+                <p class="mt-1 text-slate-600 text-sm">Gunakan konsep dari ketiga materi (Biosfer, Sumber Daya Alam, dan Dinamika Kependudukan) untuk menjawab kuis evaluasi berikut.</p>
               </div>
               <div class="flex items-center gap-3">
                 <video id="simulasi-webcam" autoplay playsinline muted class="hidden w-24 h-16 rounded-lg border-2 border-amber-500 bg-black object-cover"></video>
@@ -927,41 +897,42 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
           <div id="quiz-start-banner" class="card mt-6 text-center py-8">
             <i data-lucide="shield-alert" class="w-12 h-12 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-xl font-extrabold text-slate-900">Pilih Judul Simulasi Bab</h3>
+            <h3 class="text-xl font-extrabold text-slate-900">Pilih Paket Kuis Evaluasi</h3>
             <p class="text-slate-600 max-w-lg mx-auto mt-1 text-sm">Sebelum memulai, pastikan izin Kamera Depan diberikan. Sistem akan mengunci otomatis jika Anda berpindah tab, meminimalkan layar, atau mengambil screenshot.</p>
             
             <div class="max-w-md mx-auto mt-4 text-left">
-              <label class="block text-sm font-bold text-slate-700">Judul Simulasi yang Diikuti:</label>
+              <label class="block text-sm font-bold text-slate-700">Judul Kuis yang Diikuti:</label>
               <select id="simulasi-target-select" class="w-full border rounded-xl p-3 mt-1 font-bold bg-white">
-                <option value="Simulasi Bab 1: Posisi Strategis & Potensi SDA">Simulasi Bab 1: Posisi Strategis & Potensi SDA</option>
-                <option value="Simulasi Bab 2: Keragaman Hayati Flora & Fauna">Simulasi Bab 2: Keragaman Hayati Flora & Fauna</option>
-                <option value="Simulasi Bab 3: Lingkungan Hidup & Kependudukan">Simulasi Bab 3: Lingkungan Hidup & Kependudukan</option>
-                <option value="Simulasi Bab 4: Mitigasi & Adaptasi Bencana">Simulasi Bab 4: Mitigasi & Adaptasi Bencana</option>
+                <option value="Kuis Evaluasi Terpadu (Materi 01 - 03)">Kuis Evaluasi Terpadu (Materi 01 - 03)</option>
+                <option value="Kuis Materi 01: Biosfer & Keanekaragaman Hayati">Kuis Materi 01: Biosfer &amp; Keanekaragaman Hayati</option>
+                <option value="Kuis Materi 02: Sumber Daya Alam & Lingkungan">Kuis Materi 02: Sumber Daya Alam &amp; Lingkungan</option>
+                <option value="Kuis Materi 03: Dinamika Kependudukan">Kuis Materi 03: Dinamika Kependudukan</option>
               </select>
             </div>
 
             <button id="btn-start-quiz" type="button" class="mt-6 bg-amber-500 text-white font-bold px-6 py-3 rounded-xl text-base hover:bg-amber-600 shadow-md">
-              Izinkan Kamera &amp; Mulai Simulasi
+              Izinkan Kamera &amp; Mulai Kuis
             </button>
           </div>
 
-          <!-- Lembar Soal Simulasi -->
+          <!-- Lembar Soal Kuis Evaluasi -->
           <form id="quiz-form" class="card mt-6 hidden space-y-6">
-            <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900 border-b pb-2">Judul Simulasi</h3>
+            <h3 id="current-simulasi-title" class="font-extrabold text-lg text-amber-900 border-b pb-2">Judul Kuis</h3>
             
             <div id="simulasi-questions-container" class="space-y-6"></div>
 
             <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 text-lg">
-              Kirim Jawaban Simulasi
+              Periksa &amp; Kirim Jawaban Kuis
             </button>
           </form>
 
-          <!-- Tampilan Hasil Simulasi -->
+          <!-- Tampilan Hasil Kuis -->
           <div id="quiz-result-box" class="card mt-6 hidden text-center py-8">
             <i data-lucide="award" class="w-16 h-16 text-amber-500 mx-auto mb-2"></i>
-            <h3 class="text-2xl font-extrabold text-slate-900">Simulasi Selesai!</h3>
+            <h3 class="text-2xl font-extrabold text-slate-900">Kuis Evaluasi Selesai!</h3>
             <p class="text-slate-600 mt-1">Nilai kamu telah otomatis tersimpan ke data Guru.</p>
             <div class="mt-4 text-4xl font-extrabold text-amber-600" id="quiz-score-display">0 / 100</div>
+            <div id="quiz-review-container" class="mt-6 text-left max-w-2xl mx-auto space-y-3"></div>
           </div>
         </section>
 
@@ -974,7 +945,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
               </div>
               <div>
                 <h2 class="text-2xl font-extrabold text-slate-900">Forum Diskusi Pembelajaran Geografi</h2>
-                <p class="text-sm text-slate-600">Punya pertanyaan tentang materi atau proyek pemetaan? Tanyakan di sini agar bisa dijawab guru dan teman-teman!</p>
+                <p class="text-sm text-slate-600">Punya pertanyaan tentang biosfer, sumber daya alam, atau kependudukan? Tanyakan di sini agar bisa dijawab guru dan teman-teman!</p>
               </div>
             </div>
 
@@ -1003,12 +974,12 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       <section id="teacher-mode" class="mode-panel">
         <div class="card teacher-card border-l-4 border-violet-600">
           <h2 class="text-2xl font-extrabold text-slate-900">Panel Kelola Pembelajaran Geografi (Mode Guru)</h2>
-          <p class="mt-1 text-slate-600">Kelola hasil simulasi per bab, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
+          <p class="mt-1 text-slate-600">Kelola hasil kuis evaluasi, nilai tugas praktik, materi, video, rekap absen, dan ekspor data.</p>
         </div>
 
         <nav class="mt-6 flex flex-wrap gap-2">
           <button type="button" class="teacher-tab active rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-absen">Rekap Absen</button>
-          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Simulasi Bab</button>
+          <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-ulangan">Nilai Kuis Evaluasi</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-tugas">Penilaian Tugas Praktik</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="rekap-siswa">Refleksi Siswa</button>
           <button type="button" class="teacher-tab rounded-xl px-4 py-2 text-sm font-bold" data-teacher-tab="export-data">Ekspor Data</button>
@@ -1026,12 +997,12 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
           </div>
         </section>
 
-        <!-- Tab Rekap Nilai Simulasi -->
+        <!-- Tab Rekap Nilai Kuis Evaluasi -->
         <section id="rekap-ulangan" class="teacher-tab-panel mt-6">
           <div class="card">
-            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Simulasi Siswa per Bab</h3>
+            <h3 class="font-extrabold text-lg mb-4">Rekap Hasil Nilai Kuis Evaluasi Siswa</h3>
             <div id="rekap-ulangan-container" class="space-y-3">
-              <p class="text-sm text-slate-500">Memuat data nilai simulasi...</p>
+              <p class="text-sm text-slate-500">Memuat data nilai kuis...</p>
             </div>
           </div>
         </section>
@@ -1060,7 +1031,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         <section id="export-data" class="teacher-tab-panel mt-6">
           <div class="card">
             <h3 class="font-extrabold text-lg mb-2">Ekspor Rekapitulasi Data (Excel / CSV)</h3>
-            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai simulasi, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
+            <p class="text-sm text-slate-600 mb-5">Unduh data kehadiran, nilai kuis evaluasi, pengumpulan tugas, dan jawaban siswa ke format spreadsheet (.csv).</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
@@ -1071,7 +1042,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
               <div class="p-4 border rounded-xl bg-slate-50 text-center">
                 <i data-lucide="award" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
-                <h4 class="font-bold text-slate-900 mb-1">Nilai Simulasi Bab</h4>
+                <h4 class="font-bold text-slate-900 mb-1">Nilai Kuis Evaluasi</h4>
                 <button id="btn-export-ulangan" class="mt-2 w-full bg-amber-600 text-white font-bold py-2 px-3 rounded-lg text-xs hover:bg-amber-700">Unduh CSV Nilai</button>
               </div>
 
@@ -1094,13 +1065,12 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         <section id="add-material" class="teacher-tab-panel mt-6">
           <form id="material-form" class="card">
             <h3 class="font-extrabold text-lg">Form Tambah Materi Geografi</h3>
-            <label class="block mt-3 font-bold">Bab Target</label>
+            <label class="block mt-3 font-bold">Topik Target</label>
             <select id="material-category" class="w-full border rounded-xl p-3 mt-1">
-              <option value="Umum">Umum / Semua Bab</option>
-              <option value="Bab 1">Bab 1: Posisi Strategis & Potensi SDA</option>
-              <option value="Bab 2">Bab 2: Keragaman Hayati Flora & Fauna</option>
-              <option value="Bab 3">Bab 3: Lingkungan Hidup & Kependudukan</option>
-              <option value="Bab 4">Bab 4: Mitigasi & Adaptasi Bencana</option>
+              <option value="Umum">Umum / Semua Materi</option>
+              <option value="Materi 01: Biosfer">Materi 01: Biosfer &amp; Keanekaragaman Hayati</option>
+              <option value="Materi 02: Sumber Daya Alam">Materi 02: Sumber Daya Alam &amp; Lingkungan</option>
+              <option value="Materi 03: Kependudukan">Materi 03: Dinamika Kependudukan</option>
             </select>
             <label class="block mt-3 font-bold">Judul Materi</label>
             <input id="material-title" required class="w-full border rounded-xl p-3 mt-1">
@@ -1145,17 +1115,17 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
           <div class="space-y-2">
             <div class="flex items-center justify-center md:justify-start gap-2 text-white font-extrabold text-lg">
               <i data-lucide="globe-2" class="w-5 h-5 text-sky-400"></i>
-              <span>Media Pembelajaran Geografi SMA Kelas 11</span>
+              <span>Jelajah Geografi • SMA Kelas XI</span>
             </div>
             <p class="text-xs text-slate-400 max-w-md leading-relaxed">
-              Dikembangkan sebagai media pembelajaran interaktif berbasis Kurikulum Merdeka. Hak Cipta & Pengembang Utama oleh <strong class="text-sky-300">Wahyudin Anzatullah</strong>.
+              Media pembelajaran Geografi SMA Kelas XI (Biosfer, Sumber Daya Alam, dan Dinamika Kependudukan). Hak Cipta &amp; Pengembang Utama oleh <strong class="text-sky-300">Wahyudin Anzatullah</strong>.
             </p>
           </div>
 
           <div class="flex flex-col sm:flex-row items-center gap-4 text-xs font-semibold text-slate-300">
             <div class="flex items-center gap-2 bg-slate-800/90 px-3.5 py-2 rounded-full border border-slate-700">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-emerald-300">Sistem Active & Connected</span>
+              <span class="text-emerald-300">Sistem Active &amp; Connected</span>
             </div>
             <p>© 2026 <strong class="text-white">Wahyudin Anzatullah</strong>. All Rights Reserved.</p>
           </div>
@@ -1172,7 +1142,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
     <!-- Hak Cipta Khusus Tampilan Cetak (Print Only) -->
     <div class="hidden print:block text-center text-xs text-slate-600 mt-10 pt-4 border-t">
-      <p>Media Pembelajaran Geografi SMA Kelas 11 — Dibuat & Dikembangkan oleh: <strong>Wahyudin Anzatullah</strong></p>
+      <p>Media Pembelajaran Geografi SMA Kelas 11 — Dibuat &amp; Dikembangkan oleh: <strong>Wahyudin Anzatullah</strong></p>
     </div>
 
     <!-- Modal Form Absen -->
@@ -1200,7 +1170,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
             <option value="11.11">Kelas 11.11</option>
           </select>
 
-          <button type="submit" class="mt-5 w-full bg-sky-700 text-white font-bold py-3 rounded-xl hover:bg-sky-800">Kirim Absen & Masuk</button>
+          <button type="submit" class="mt-5 w-full bg-sky-700 text-white font-bold py-3 rounded-xl hover:bg-sky-800">Kirim Absen &amp; Masuk</button>
         </form>
       </div>
     </div>
@@ -1226,11 +1196,11 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       <div class="access-dialog border-2 border-rose-500">
         <div class="text-center">
           <i data-lucide="lock" class="w-14 h-14 text-rose-600 mx-auto mb-2"></i>
-          <h2 class="text-2xl font-extrabold text-rose-700">Simulasi Terkunci!</h2>
+          <h2 class="text-2xl font-extrabold text-rose-700">Kuis Terkunci!</h2>
           <p id="quiz-lock-reason" class="mt-2 text-sm font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-200">
             Terdeteksi tindakan tidak diizinkan.
           </p>
-          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan simulasi.</p>
+          <p class="mt-3 text-xs text-slate-600">Minta bantuan Guru untuk memasukkan Password pembuka kunci agar Anda dapat melanjutkan kuis.</p>
         </div>
 
         <form id="quiz-unlock-form" class="mt-5">
@@ -1246,7 +1216,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
   <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
     import { 
@@ -1254,7 +1223,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       onSnapshot, getDocs, getDoc, setDoc 
     } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyC2bTEFygslbKNnB7REr89VV8wc5ICd7Cs",
       authDomain: "geografixi.firebaseapp.com",
@@ -1266,7 +1234,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       measurementId: "G-8RQYYN478G"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
@@ -1302,209 +1269,221 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       }
     }
 
-    // DATABASE 30 SOAL TKA BAB 1 (POSISI STRATEGIS INDONESIA & POTENSI SDA)
-    const m1TkaQuestions = [
-      {
-        q: "1. Secara astronomis, wilayah Negara Kesatuan Republik Indonesia terletak di antara...",
-        options: ["6° LU – 11° LS dan 95° BT – 141° BT", "6° LS – 11° LU dan 95° BB – 141° BB", "11° LU – 6° LS dan 95° BT – 141° BT", "6° LU – 11° LS dan 105° BT – 145° BT"],
-        answer: 0,
-        why: "Letak astronomis Indonesia berada pada 6° LU – 11° LS (Pulau Weh hingga Pulau Rote) dan 95° BT – 141° BT (Pulau Weh hingga Merauke)."
-      },
-      {
-        q: "2. Pengaruh utama letak lintang Indonesia yang berada di sekitar garis khatulistiwa (6° LU – 11° LS) adalah...",
-        options: ["Memiliki empat musim berbeda", "Beriklim tropis dengan penyinaran matahari sepanjang tahun", "Sering terjadi badai salju di pegunungan", "Suhu udara harian sangat ekstrem di bawah 0°C"],
-        answer: 1,
-        why: "Wilayah yang berada di antara 23,5° LU dan 23,5° LS beriklim tropis dengan penyinaran matahari sepanjang tahun dan curah hujan tinggi."
-      },
-      {
-        q: "3. Pembagian tiga zona waktu di Indonesia (WIB, WITA, WIT) didasarkan pada garis bujur standar masing-masing yaitu...",
-        options: ["95° BT, 110° BT, 125° BT", "105° BT, 120° BT, 135° BT", "100° BT, 115° BT, 130° BT", "110° BT, 125° BT, 140° BT"],
-        answer: 1,
-        why: "Setiap selisih 15° bujur berbeda 1 jam dari Greenwich (0°): 105° BT (GMT+7/WIB), 120° BT (GMT+8/WITA), dan 135° BT (GMT+9/WIT)."
-      },
-      {
-        q: "4. Berdasarkan letak geografisnya, Indonesia berada pada posisi silang dunia karena diapit oleh dua benua dan dua samudra, yaitu...",
-        options: ["Benua Asia & Afrika serta Samudra Atlantik & Hindia", "Benua Asia & Australia serta Samudra Hindia & Pasifik", "Benua Australia & Amerika serta Samudra Pasifik & Arktik", "Benua Eropa & Asia serta Samudra Hindia & Pasifik"],
-        answer: 1,
-        why: "Letak geografis Indonesia diapit oleh Benua Asia di barat laut, Benua Australia di tenggara, Samudra Hindia di barat-selatan, dan Samudra Pasifik di timur laut."
-      },
-      {
-        q: "5. Keuntungan ekonomi utama dari posisi silang (cross position) Indonesia bagi jalur pelayaran dunia adalah...",
-        options: ["Terbebas dari seluruh ancaman kejahatan maritim", "Menjadi jalur transit perdagangan internasional yang ramai", "Tidak memerlukan kerja sama perdagangan dengan negara tetangga", "Seluruh wilayah Indonesia terhindar dari gempa bumi"],
-        answer: 1,
-        why: "Posisi silang menjadikan perairan Indonesia jalur lalu lintas pelayaran dan perdagangan internasional antara Asia Timur, Australia, Eropa, dan Timur Tengah."
-      },
-      {
-        q: "6. Secara geologis, wilayah Indonesia merupakan tempat pertemuan tiga lempeng tektonik besar dunia, yaitu...",
-        options: ["Lempeng Eurasia, Lempeng Indo-Australia, dan Lempeng Pasifik", "Lempeng Amerika Utara, Lempeng Nazca, dan Lempeng Pasifik", "Lempeng Afrika, Lempeng Eurasia, dan Lempeng Antartika", "Lempeng Indo-Australia, Lempeng Arab, dan Lempeng Karibia"],
-        answer: 0,
-        why: "Indonesia terletak pada zona subduksi/pertemuan tiga lempeng besar: Eurasia, Indo-Australia, dan Pasifik."
-      },
-      {
-        q: "7. Dampak positif dari kondisi geologis Indonesia yang dilalui jalur gunung api (Ring of Fire) bagi sektor pertanian adalah...",
-        options: ["Tanah menjadi tandus dan berbatu", "Banyak terbentuk tanah vulkanik yang kaya unsur hara dan subur", "Curah hujan menjadi sangat rendah sepanjang tahun", "Berkurangnya keanekaragaman hayati daratan"],
-        answer: 1,
-        why: "Abu vulkanik hasil erupsi gunung api mengandung banyak mineral hara yang membentuk tanah andosol/vulkanik yang sangat subur."
-      },
-      {
-        q: "8. Selain menghasilkan tanah subur dan mineral logam, letak geologis Indonesia juga menimbulkan risiko tinggi terhadap bencana...",
-        options: ["Badai gurun dan kekeringan ekstrem", "Gempa bumi tektonik, erupsi gunung api, dan tsunami", "Gelombang panas kutub", "Banjir bandang akibat mencairnya gletser kutub"],
-        answer: 1,
-        why: "Pertemuan tiga lempeng tektonik aktif menyebabkan aktivitas seismik dan vulkanik tinggi di sebagian besar kepulauan Indonesia."
-      },
-      {
-        q: "9. Alur Laut Kepulauan Indonesia (ALKI) ditetapkan untuk memfasilitasi hak lintas damai kapal asing. ALKI I melintasi perairan...",
-        options: ["Selat Lombok – Selat Makassar – Laut Sulawesi", "Laut Natuna – Selat Karimata – Laut Jawa – Selat Sunda", "Laut Sawu – Selat Ombai – Laut Banda – Laut Maluku", "Selat Malaka – Laut Andaman – Samudra Hindia"],
-        answer: 1,
-        why: "ALKI I menghubungkan Laut Cina Selatan/Laut Natuna, Selat Karimata, Laut Jawa, hingga Selat Sunda menuju Samudra Hindia."
-      },
-      {
-        q: "10. Berikut ini yang merupakan salah satu dari lima pilar utama pembangunan Indonesia sebagai Poros Maritim Dunia adalah...",
-        options: ["Menghentikan seluruh aktivitas ekspor hasil laut", "Pembangunan infrastruktur dan konektivitas maritim (Tol Laut)", "Memfokuskan pembangunan hanya di wilayah pedalaman daratan", "Menutup seluruh jalur ALKI bagi kapal niaga dunia"],
-        answer: 1,
-        why: "Pembangunan infrastruktur dan konektivitas maritim (seperti Tol Laut dan pelabuhan laut dalam) merupakan pilar kunci Poros Maritim Dunia."
-      },
-      {
-        q: "11. Berdasarkan Konvensi Hukum Laut PBB (UNCLOS 1982), batas Zona Ekonomi Eksklusif (ZEE) Indonesia diukur sejauh...",
-        options: ["12 mil laut dari garis pangkal kepulauan", "24 mil laut dari garis pangkal kepulauan", "200 mil laut dari garis pangkal kepulauan", "350 mil laut dari garis pantai terluar"],
-        answer: 2,
-        why: "ZEE membentang sejauh 200 mil laut dari garis pangkal di mana negara pantai memiliki hak berdaulat untuk mengeksplorasi dan mengelola sumber daya alam."
-      },
-      {
-        q: "12. Wilayah laut selebar 12 mil laut yang diukur dari garis pangkal kepulauan di mana Indonesia memiliki kedaulatan penuh atas air, dasar laut, dan ruang udara di atasnya disebut...",
-        options: ["Zona Tambahan", "Laut Teritorial", "Laut Lepas", "Landas Kontinen"],
-        answer: 1,
-        why: "Laut Teritorial memiliki lebar maksimal 12 mil laut dengan kedaulatan penuh negara pantai."
-      },
-      {
-        q: "13. Berdasarkan sifat kelestariannya, sumber daya alam seperti minyak bumi, gas alam, batu bara, dan bijih nikel termasuk ke dalam jenis...",
-        options: ["SDA Terbarukan (Renewable Resources)", "SDA Tidak Terbarukan (Non-renewable Resources)", "SDA Kekal (Perpetual Resources)", "SDA Hayati (Biotik)"],
-        answer: 1,
-        why: "Bahan tambang fosil dan mineral memerlukan waktu jutaan tahun untuk terbentuk kembali sehingga tergolong SDA tidak terbarukan."
-      },
-      {
-        q: "14. Contoh sumber daya alam yang bersifat kekal (perpetual) dan ramah lingkungan untuk dikembangkan sebagai energi terbarukan di Indonesia adalah...",
-        options: ["Batu bara dan gambut", "Energi surya (matahari), angin, dan gelombang laut", "Minyak bumi dan gas alam", "Bijih bauksit dan timah"],
-        answer: 1,
-        why: "Energi matahari, angin, dan arus/gelombang laut tersedia terus-menerus di alam tanpa habis dipakai."
-      },
-      {
-        q: "15. Hutan hujan tropis di Indonesia memiliki peran ekologis sangat penting sebagai paru-paru dunia karena mampu...",
-        options: ["Menyerap karbon dioksida (CO2) dan menghasilkan oksigen (O2)", "Meningkatkan suhu rata-rata atmosfer global", "Mengurangi resapan air hujan ke dalam tanah", "Mempercepat laju erosi lahan pegunungan"],
-        answer: 0,
-        why: "Vegetasi hutan hujan tropis menyerap emisi karbon dalam jumlah besar dan melepaskan oksigen melalui fotosintesis."
-      },
-      {
-        q: "16. Ekosistem hutan mangrove yang banyak tersebar di pesisir Sumatra bagian timur, Kalimantan, dan Papua berfungsi utama untuk...",
-        options: ["Menahan abrasi pantai, gelombang pasang, serta tempat pemijahan ikan", "Menghasilkan kayu pertukangan keras untuk ekspor besar-besaran", "Menggantikan fungsi terumbu karang di laut dalam", "Menghambat pertumbuhan ekosistem perairan payau"],
-        answer: 0,
-        why: "Akar mangrove meredam energi gelombang, mencegah abrasi pantai, dan menjadi habitat pemijahan (nursery ground) biota laut."
-      },
-      {
-        q: "17. Wilayah di Indonesia yang dikenal sebagai penghasil cadangan bijih nikel terbesar dan menjadi pusat hilirisasi industri baterai kendaraan listrik adalah...",
-        options: ["Sulawesi Tengah, Sulawesi Tenggara, dan Maluku Utara", "Bangka Belitung dan Kepulauan Riau", "Jawa Barat dan Banten", "Bali dan Nusa Tenggara Barat"],
-        answer: 0,
-        why: "Sebaran nikel laterit terbesar Indonesia berada di Sulawesi Tenggara (Pomalaa, Konawe), Sulawesi Tengah (Morowali), dan Maluku Utara (Halmahera)."
-      },
-      {
-        q: "18. Kawasan pertambangan tembaga dan emas terbesar di Indonesia yang terletak di Kabupaten Mimika, Provinsi Papua Tengah adalah...",
-        options: ["Tambang Ombilin", "Tambang Grasberg", "Tambang Martapura", "Tambang Bukit Asam"],
-        answer: 1,
-        why: "Tambang Grasberg di Mimika, Papua Tengah merupakan salah satu cadangan tembaga dan emas terbesar di dunia."
-      },
-      {
-        q: "19. Pulau Bangka dan Pulau Belitung merupakan wilayah penghasil komoditas tambang utama berupa...",
-        options: ["Intan dan batu bara", "Timah", "Minyak bumi lepas pantai", "Aspal alam"],
-        answer: 1,
-        why: "Bangka Belitung berada pada jalur sabuk timah Asia Tenggara (Southeast Asian Tin Belt)."
-      },
-      {
-        q: "20. Potensi energi baru terbarukan (EBT) berupa panas bumi (geothermal) sangat melimpah di Pulau Sumatra, Jawa, dan Sulawesi karena...",
-        options: ["Memiliki gurun pasir yang luas", "Banyak terdapat gunung api aktif yang menyimpan cadangan panas di bawah permukaan", "Kecepatan angin pasat sangat kencang sepanjang tahun", "Memiliki sungai-sungai besar dengan debit konstan"],
-        answer: 1,
-        why: "Indonesia menyimpan sekitar 40% cadangan panas bumi dunia akibat aktivitas magmatik pada jalur gunung api aktif."
-      },
-      {
-        q: "21. Selain perikanan tangkap, potensi sumber daya kelautan Indonesia yang memiliki nilai ekonomi tinggi di perairan dangkal jernih adalah...",
-        options: ["Penambangan batu bara bawah laut", "Budidaya rumput laut, mutiara, dan ekowisata bahari terumbu karang", "Pertanian padi sawah pasang surut", "Industri peleburan baja lepas pantai"],
-        answer: 1,
-        why: "Indonesia berada di pusat Segitiga Terumbu Karang Dunia (Coral Triangle) yang sangat potensial untuk wisata bahari dan budidaya laut."
-      },
-      {
-        q: "22. Pembagian Wilayah Pengelolaan Perikanan Negara Republik Indonesia (WPPNRI) menjadi 11 wilayah bertujuan untuk...",
-        options: ["Membatasi nelayan lokal melaut di perairan sendiri", "Mengatur kuota tangkapan agar kelestarian stok ikan terjaga dan mencegah overfishing", "Menyerahkan pengelolaan laut kepada kapal asing", "Menghapuskan zona konservasi laut nasional"],
-        answer: 1,
-        why: "WPPNRI mengatur pengelolaan perikanan berbasis data ilmiah agar tidak terjadi penangkapan berlebih (overfishing)."
-      },
-      {
-        q: "23. Pengertian pembangunan berkelanjutan (sustainable development) dalam pengelolaan sumber daya alam adalah...",
-        options: ["Mengeksploitasi seluruh SDA secepat mungkin demi pertumbuhan ekonomi saat ini", "Memenuhi kebutuhan generasi sekarang tanpa mengorbankan kemampuan generasi mendatang", "Melarang total pemanfaatan seluruh sumber daya alam di Indonesia", "Mengimpor seluruh kebutuhan energi dari luar negeri"],
-        answer: 1,
-        why: "Pembangunan berkelanjutan menyeimbangkan aspek ekonomi, sosial, dan kelestarian lingkungan lintas generasi."
-      },
-      {
-        q: "24. Dokumen kajian wajib yang disusun sebelum menjalankan proyek pembangunan berskala besar yang berpotensi menimbulkan dampak penting terhadap lingkungan adalah...",
-        options: ["IMB (Izin Mendirikan Bangunan)", "AMDAL (Analisis Mengenai Dampak Lingkungan)", "SIUP (Surat Izin Usaha Perdagangan)", "NPWP (Nomor Pokok Wajib Pajak)"],
-        answer: 1,
-        why: "AMDAL menilai kelayakan lingkungan suatu rencana kegiatan/usaha serta merancang upaya pengelolaan dan pemantauan lingkungan."
-      },
-      {
-        q: "25. Penerapan prinsip ekoefisiensi dalam pemanfaatan sumber daya alam ditunjukkan melalui tindakan...",
-        options: ["Membuang limbah pabrik langsung ke aliran sungai", "Menghemat penggunaan bahan baku serta mendaur ulang limbah produksi", "Membuka lahan hutan dengan cara membakar", "Menggunakan alat tangkap pukat harimau di perairan dangkal"],
-        answer: 1,
-        why: "Ekoefisiensi memaksimalkan nilai guna sumber daya sambil meminimalkan limbah dan kerusakan ekosistem."
-      },
-      {
-        q: "26. Upaya pemulihan kembali lahan bekas pertambangan terbuka agar kembali stabil, hijau, dan produktif secara ekologis disebut...",
-        options: ["Deforestasi", "Reklamasi dan revegetasi", "Urbanisasi", "Eutrofikasi"],
-        answer: 1,
-        why: "Reklamasi menata kembali permukaan lahan bekas tambang dan revegetasi menanaminya kembali dengan vegetasi penutup."
-      },
-      {
-        q: "27. Pengembangan pariwisata berbasis alam dan budaya yang mengutamakan kelestarian lingkungan serta pemberdayaan masyarakat lokal disebut...",
-        options: ["Pariwisata massal (mass tourism)", "Ekowisata (ecotourism)", "Eksploitasi kawasan lindung", "Industrialisasi pesisir"],
-        answer: 1,
-        why: "Ekowisata menggabungkan konservasi alam, edukasi lingkungan, dan peningkatan kesejahteraan masyarakat setempat."
-      },
-      {
-        q: "28. Ancaman serius terhadap kedaulatan dan potensi sumber daya perikanan di perairan perbatasan Indonesia adalah...",
-        options: ["Rehabilitasi terumbu karang", "Illegal, Unreported, and Unregulated (IUU) Fishing", "Pengembangan pelabuhan perikanan nusantara", "Budidaya ikan kerapu keramba jaring apung"],
-        answer: 1,
-        why: "IUU Fishing (penangkapan ikan ilegal, tidak dilaporkan, dan tidak diatur) merugikan negara secara ekonomi maupun ekologi."
-      },
-      {
-        q: "29. Kebijakan hilirisasi sumber daya mineral (seperti pengolahan bijih nikel menjadi feronikel atau prekursor baterai di dalam negeri) bertujuan untuk...",
-        options: ["Menjual bahan mentah dengan harga murah ke luar negeri", "Meningkatkan nilai tambah komoditas dan membuka lapangan kerja nasional", "Mengurangi kualitas produk industri dalam negeri", "Menghentikan seluruh investasi teknologi"],
-        answer: 1,
-        why: "Hilirisasi mengolah bahan mentah menjadi barang setengah jadi atau barang jadi sehingga nilai jual dan manfaat ekonominya berlipat ganda."
-      },
-      {
-        q: "30. Pemanfaatan Sistem Informasi Geografis (SIG) dan citra satelit penginderaan jauh dalam pengelolaan sumber daya alam sangat berguna untuk...",
-        options: ["Memetakan sebaran potensi tambang, tutupan hutan, dan memantau perubahan lahan", "Mengubah iklim global secara instan", "Menghentikan pergerakan lempeng tektonik", "Menggantikan seluruh peran tenaga ahli geologi di lapangan"],
-        answer: 0,
-        why: "SIG dan penginderaan jauh memungkinkan inventarisasi, pemantauan spasial, dan analisis perubahan penggunaan lahan secara akurat dan cepat."
-      }
-    ];
+    // BANK SOAL KUIS LATIHAN PER MATERI (DISESUAIKAN DENGAN MATERI MGEO)
+    const quizBanks = {
+      m1: [
+        {
+          q: "1. Tingkat keanekaragaman hayati yang menunjukkan variasi antarspesies makhluk hidup di suatu wilayah disebut …",
+          options: ["Keanekaragaman gen", "Keanekaragaman jenis", "Keanekaragaman ekosistem", "Persebaran penduduk"],
+          answer: 1,
+          why: "Keanekaragaman jenis berarti variasi spesies makhluk hidup di suatu wilayah."
+        },
+        {
+          q: "2. Komodo merupakan contoh fauna endemik khas wilayah …",
+          options: ["Asiatis", "Peralihan (Wallacea)", "Australis", "Kutub"],
+          answer: 1,
+          why: "Komodo hidup di wilayah peralihan atau Wallacea yang terletak di antara Garis Wallace dan Garis Weber."
+        },
+        {
+          q: "3. Faktor fisik berikut yang sangat memengaruhi persebaran flora di suatu wilayah adalah …",
+          options: ["Curah hujan dan ketinggian tempat", "Warna bendera negara", "Nama batas provinsi", "Pembagian zona waktu saja"],
+          answer: 0,
+          why: "Ketersediaan air (curah hujan) dan suhu yang dipengaruhi ketinggian menentukan kondisi tumbuh tanaman."
+        },
+        {
+          q: "4. Bagian permukaan bumi tempat seluruh makhluk hidup berada dan saling berinteraksi dengan lingkungannya disebut …",
+          options: ["Litosfer", "Biosfer", "Atmosfer", "Barisfer"],
+          answer: 1,
+          why: "Biosfer merupakan lapisan kehidupan di bumi yang mencakup daratan, perairan, dan udara tempat organisme hidup."
+        },
+        {
+          q: "5. Fauna Indonesia bagian barat (Sumatra, Jawa, Kalimantan) memiliki kemiripan dengan fauna Benua Asia karena sejarah geologi pernah menyatu dalam …",
+          options: ["Paparan Sahul", "Paparan Sunda", "Dangkalan Wallacea", "Palung Mariana"],
+          answer: 1,
+          why: "Pada zaman es, wilayah Indonesia barat terhubung dengan daratan Asia melalui Paparan Sunda."
+        },
+        {
+          q: "6. Garis khayal yang memisahkan persebaran fauna Indonesia tipe Peralihan dengan tipe Australis adalah …",
+          options: ["Garis Wallace", "Garis Weber", "Garis Khatulistiwa", "Garis Balik Utara"],
+          answer: 1,
+          why: "Garis Weber membatasi wilayah Wallacea (Peralihan) di sebelah barat dengan wilayah Australis (Papua & Kepulauan Aru) di sebelah timur."
+        },
+        {
+          q: "7. Bioma hutan hujan tropis banyak berkembang di Sumatra, Kalimantan, dan Papua karena karakteristik iklimnya berupa …",
+          options: ["Curah hujan tinggi sepanjang tahun dan penyinaran matahari melimpah", "Musim kemarau panjang lebih dari 8 bulan", "Suhu udara selalu di bawah titik beku", "Angin gurun yang sangat kering"],
+          answer: 0,
+          why: "Hutan hujan tropis tumbuh optimal pada wilayah beriklim tropis basah dengan curah hujan tinggi."
+        },
+        {
+          q: "8. Di wilayah Nusa Tenggara yang memiliki musim kering lebih nyata, formasi vegetasi yang banyak dijumpai adalah …",
+          options: ["Tundra lumut kerak", "Sabana (padang rumput diselingi pepohonan)", "Hutan konifer taiga", "Hutan lumut kutub"],
+          answer: 1,
+          why: "Sabana berkembang di wilayah tropis dengan curah hujan musiman dan periode kering yang lebih panjang."
+        },
+        {
+          q: "9. Pelestarian flora dan fauna langka yang dilakukan langsung di dalam habitat aslinya seperti Taman Nasional Ujung Kulon disebut …",
+          options: ["Konservasi Eksitu", "Konservasi Insitu", "Reklamasi Tambang", "Urbanisasi"],
+          answer: 1,
+          why: "Konservasi insitu menjaga kelestarian spesies di dalam ekosistem aslinya."
+        },
+        {
+          q: "10. Contoh fauna khas Indonesia bagian timur yang berciri Australis adalah …",
+          options: ["Orangutan dan Badak Jawa", "Anoa dan Babirusa", "Cenderawasih, Kasuari, dan Kanguru Pohon", "Harimau Sumatra dan Gajah"],
+          answer: 2,
+          why: "Cenderawasih, kasuari, dan kanguru pohon merupakan fauna berciri Australis di Papua."
+        }
+      ],
+      m2: [
+        {
+          q: "1. Manakah contoh sumber daya alam yang tidak dapat diperbarui dalam skala waktu manusia?",
+          options: ["Sinar matahari", "Angin", "Minyak bumi", "Hutan yang direboisasi"],
+          answer: 2,
+          why: "Minyak bumi terbentuk melalui proses geologis yang sangat lama sehingga cadangannya terbatas."
+        },
+        {
+          q: "2. Tindakan nyata yang mendukung pelestarian sumber daya alam adalah …",
+          options: ["Membuang limbah industri langsung ke sungai", "Menebang hutan tanpa pemulihan", "Reboisasi lahan rusak dan hemat energi", "Menggunakan energi fosil secara boros"],
+          answer: 2,
+          why: "Reboisasi membantu memulihkan tutupan vegetasi dan menjaga fungsi hidrologis ekosistem."
+        },
+        {
+          q: "3. Sumber daya alam yang berasal dari makhluk hidup seperti hasil pertanian, perkebunan, kehutanan, dan perikanan termasuk kelompok …",
+          options: ["SDA Nonhayati", "SDA Hayati (Biotik)", "SDA Mineral Logam", "SDA Fosil"],
+          answer: 1,
+          why: "SDA hayati berasal dari komponen biotik (tumbuhan dan hewan)."
+        },
+        {
+          q: "4. Mengapa sumber daya alam yang dapat diperbarui (seperti hutan dan air tanah) tetap dapat mengalami kelangkaan?",
+          options: ["Karena tidak pernah mengalami siklus alami", "Karena dieksploitasi secara berlebihan melebihi kemampuan pemulihannya", "Karena jumlahnya selalu tetap selamanya", "Karena tidak memiliki nilai ekonomi"],
+          answer: 1,
+          why: "Pemanfaatan yang melampaui daya dukung lingkungan membuat SDA terbarukan pun bisa rusak atau habis."
+        },
+        {
+          q: "5. Pengertian prinsip pemanfaatan sumber daya alam secara berkelanjutan adalah …",
+          options: ["Mengeksploitasi seluruh sumber daya secepat mungkin saat ini", "Memenuhi kebutuhan masa kini tanpa mengurangi kesempatan generasi mendatang", "Melarang seluruh kegiatan ekonomi berbasis alam", "Mengganti seluruh lahan hutan menjadi kawasan industri"],
+          answer: 1,
+          why: "Prinsip berkelanjutan menyeimbangkan kebutuhan ekonomi sekarang dengan kelestarian ekosistem bagi generasi penerus."
+        },
+        {
+          q: "6. Ekosistem hutan mangrove di wilayah pesisir memiliki peran ekologis penting berupa …",
+          options: ["Mempercepat abrasi pantai", "Menahan gelombang pasang, mencegah abrasi, dan tempat pemijahan biota laut", "Menghasilkan batu bara secara instan", "Mengurangi kadar oksigen di pesisir"],
+          answer: 1,
+          why: "Perakaran mangrove meredam energi gelombang laut dan menjadi habitat pemijahan (nursery ground) ikan."
+        },
+        {
+          q: "7. Kajian mengenai dampak penting suatu usaha atau kegiatan yang direncanakan pada lingkungan hidup sebelum izin diberikan disebut …",
+          options: ["AMDAL (Analisis Mengenai Dampak Lingkungan)", "WPPNRI", "UNCLOS", "Sensus Penduduk"],
+          answer: 0,
+          why: "AMDAL wajib disusun agar risiko kerusakan lingkungan dapat dicegah dan dikelola sejak tahap perencanaan."
+        },
+        {
+          q: "8. Upaya menata dan menanami kembali lahan bekas pertambangan terbuka agar pulih secara ekologis disebut …",
+          options: ["Deforestasi", "Reklamasi dan rehabilitasi lahan", "Eutrofikasi", "Emigrasi"],
+          answer: 1,
+          why: "Reklamasi dan rehabilitasi memulihkan kondisi tanah dan tutupan vegetasi pascatambang."
+        },
+        {
+          q: "9. Energi surya (sinar matahari) dan energi angin dikategorikan sebagai sumber daya alam yang …",
+          options: ["Tidak dapat diperbarui", "Dapat diperbarui / tersedia alami terus-menerus", "Berasal dari fosil purba", "Hanya tersedia di daerah kutub"],
+          answer: 1,
+          why: "Energi matahari dan angin tersedia kembali secara alami dalam skala waktu manusia."
+        },
+        {
+          q: "10. Penerapan prinsip ekoefisiensi dalam kegiatan industri bertujuan untuk …",
+          options: ["Memperbanyak limbah berbahaya", "Menghemat penggunaan bahan baku dan energi serta meminimalkan pencemaran", "Meningkatkan penebangan liar", "Mengabaikan daya dukung lingkungan"],
+          answer: 1,
+          why: "Ekoefisiensi memaksimalkan efisiensi pemanfaatan SDA sekaligus menekan dampak kerusakan lingkungan."
+        }
+      ],
+      m3: [
+        {
+          q: "1. Jika dalam suatu tahun tercatat kelahiran 120 jiwa, kematian 40 jiwa, imigrasi 30 jiwa, dan emigrasi 10 jiwa, maka pertumbuhan total penduduk adalah …",
+          options: ["60 orang", "80 orang", "100 orang", "200 orang"],
+          answer: 2,
+          why: "Pertumbuhan total = (120 − 40) + (30 − 10) = 80 + 20 = 100 orang."
+        },
+        {
+          q: "2. Faktor utama yang menyebabkan persebaran penduduk di Indonesia tidak merata antarwilayah adalah …",
+          options: ["Ketersediaan lapangan kerja, akses transportasi, kondisi fisik wilayah, dan fasilitas umum", "Perbedaan warna tanah semata", "Jumlah huruf pada nama provinsi", "Perbedaan panjang siang dan malam"],
+          answer: 0,
+          why: "Pusat ekonomi, lapangan kerja, transportasi, dan fasilitas pelayanan menarik konsentrasi penduduk lebih tinggi."
+        },
+        {
+          q: "3. Pertumbuhan penduduk alami dihitung berdasarkan selisih antara …",
+          options: ["Imigrasi dan emigrasi", "Kelahiran dan kematian", "Penduduk laki-laki dan perempuan", "Penduduk desa dan kota"],
+          answer: 1,
+          why: "Pertumbuhan penduduk alami = Kelahiran (natalitas) − Kematian (mortalitas)."
+        },
+        {
+          q: "4. Perpindahan penduduk yang masuk ke suatu negara atau wilayah dan menambah jumlah penduduk di daerah tujuan disebut …",
+          options: ["Emigrasi", "Imigrasi", "Mortalitas", "Transmigrasi keluar"],
+          answer: 1,
+          why: "Imigrasi adalah masuknya penduduk ke suatu wilayah/negara, sehingga menambah jumlah penduduk."
+        },
+        {
+          q: "5. Manfaat utama mengetahui komposisi penduduk menurut kelompok umur bagi pemerintah adalah …",
+          options: ["Menentukan warna seragam sekolah", "Memperkirakan kebutuhan fasilitas pendidikan, kesehatan, dan penyediaan lapangan kerja", "Mengubah letak astronomis negara", "Mengurangi luas wilayah administrasi"],
+          answer: 1,
+          why: "Data struktur umur membantu perencanaan jumlah sekolah (usia muda), lapangan kerja (usia produktif), dan layanan lansia."
+        },
+        {
+          q: "6. Piramida penduduk yang memiliki bagian alas lebar karena angka kelahiran masih tinggi disebut piramida …",
+          options: ["Konstruktif (Tua)", "Ekspansif (Muda)", "Stasioner (Dewasa)", "Terbalik"],
+          answer: 1,
+          why: "Piramida ekspansif mencerminkan dominasi penduduk usia muda akibat tingginya angka kelahiran."
+        },
+        {
+          q: "7. Permasalahan lingkungan dan sosial yang sering muncul akibat kepadatan penduduk perkotaan yang terlalu tinggi tanpa perencanaan matang adalah …",
+          options: ["Berkurangnya kebutuhan air bersih", "Munculnya permukiman kumuh, kemacetan, pengangguran, dan tekanan terhadap lingkungan", "Menurunnya produksi sampah rumah tangga", "Kelebihan lahan pertanian subur di pusat kota"],
+          answer: 1,
+          why: "Pertumbuhan penduduk kota yang melebihi kapasitas ruang dan layanan menimbulkan tekanan lingkungan serta masalah sosial."
+        },
+        {
+          q: "8. Tiga dimensi utama yang digunakan untuk mengukur kualitas penduduk melalui Indeks Pembangunan Manusia (IPM) adalah …",
+          options: ["Kesehatan, pendidikan, dan standar hidup layak", "Luas wilayah, curah hujan, dan ketinggian", "Kelahiran, imigrasi, dan emigrasi", "Pertanian, perikanan, dan kehutanan"],
+          answer: 0,
+          why: "IPM mengukur kualitas hidup manusia dari aspek usia harapan hidup (kesehatan), rata-rata lama sekolah (pendidikan), dan pengeluaran per kapita (ekonomi)."
+        },
+        {
+          q: "9. Agar momentum Bonus Demografi (melimpahnya penduduk usia produktif 15–64 tahun) membawa kemajuan ekonomi, syarat utamanya adalah …",
+          options: ["Pendidikan berkualitas, layanan kesehatan baik, dan tersedianya lapangan kerja", "Meningkatkan angka putus sekolah", "Menghentikan pembangunan infrastruktur publik", "Mengurangi pelatihan keterampilan kerja"],
+          answer: 0,
+          why: "Penduduk usia produktif harus dibekali keterampilan, pendidikan, dan pekerjaan agar produktif secara ekonomi."
+        },
+        {
+          q: "10. Apabila dalam suatu wilayah tercatat kelahiran 85 jiwa, kematian 50 jiwa, imigrasi 15 jiwa, dan emigrasi 25 jiwa, maka perubahan total penduduknya adalah …",
+          options: ["Bertambah 25 orang", "Bertambah 45 orang", "Berkurang 10 orang", "Tetap 0 orang"],
+          answer: 0,
+          why: "(85 − 50) + (15 − 25) = 35 + (−10) = +25 orang (bertambah 25 orang)."
+        }
+      ]
+    };
 
-    // Database Soal Simulasi per Bab
+    // DATABASE KUIS EVALUASI (TERMASUK 6 SOAL UTAMA DARI MGEO)
     const simulasiDatabase = {
-      "Simulasi Bab 1: Posisi Strategis & Potensi SDA": [
-        { q: "1. Secara astronomis, pembagian tiga zona waktu Indonesia (WIB, WITA, WIT) dipengaruhi oleh...", options: ["Letak lintang", "Letak bujur (95° BT – 141° BT)", "Pertemuan lempeng tektonik", "Arus laut samudra"], answer: "b" },
-        { q: "2. Berdasarkan UNCLOS 1982, batas Zona Ekonomi Eksklusif (ZEE) Indonesia diukur sejauh...", options: ["200 mil laut dari garis pangkal", "12 mil laut dari garis pangkal", "24 mil laut dari garis pangkal", "350 mil laut dari pantai"], answer: "a" },
-        { q: "3. Wilayah Indonesia yang dikenal sebagai penghasil cadangan bijih nikel utama adalah...", options: ["Bangka Belitung", "Sulawesi Tenggara & Maluku Utara", "Kalimantan Barat", "Jawa Tengah"], answer: "b" }
+      "Kuis Evaluasi Terpadu (Materi 01 - 03)": [
+        { q: "1. Tingkat keanekaragaman hayati yang menunjukkan variasi antarspesies disebut …", options: ["Keanekaragaman gen", "Keanekaragaman jenis", "Keanekaragaman ekosistem", "Persebaran penduduk"], answer: "b", why: "Keanekaragaman jenis berarti variasi spesies makhluk hidup di suatu wilayah." },
+        { q: "2. Komodo merupakan contoh fauna khas wilayah …", options: ["Asiatis", "Peralihan", "Australis", "Kutub"], answer: "b", why: "Komodo hidup di wilayah peralihan atau Wallacea." },
+        { q: "3. Faktor berikut yang dapat memengaruhi persebaran flora adalah …", options: ["Curah hujan dan ketinggian", "Warna bendera", "Nama provinsi", "Zona waktu saja"], answer: "a", why: "Air dan suhu yang dipengaruhi ketinggian menentukan kondisi tumbuh tanaman." },
+        { q: "4. Manakah contoh sumber daya alam yang tidak dapat diperbarui dalam skala waktu manusia?", options: ["Sinar matahari", "Angin", "Minyak bumi", "Hutan yang direboisasi"], answer: "c", why: "Minyak bumi terbentuk melalui proses geologis yang sangat lama." },
+        { q: "5. Tindakan yang mendukung pelestarian sumber daya alam adalah …", options: ["Membuang limbah ke sungai", "Menebang tanpa pemulihan", "Reboisasi lahan rusak", "Menggunakan energi secara boros"], answer: "c", why: "Reboisasi membantu memulihkan tutupan vegetasi dan fungsi lingkungan." },
+        { q: "6. Jika kelahiran 120, kematian 40, imigrasi 30, dan emigrasi 10, pertumbuhan total penduduk adalah …", options: ["60 orang", "80 orang", "100 orang", "200 orang"], answer: "c", why: "(120 − 40) + (30 − 10) = 100 orang." }
       ],
-      "Simulasi Bab 2: Keragaman Hayati Flora & Fauna": [
-        { q: "1. Garis khayal yang memisahkan fauna tipe Asiatis (barat) dengan fauna tipe Peralihan (tengah) disebut...", options: ["Garis Weber", "Garis Wallace", "Garis Khatulistiwa", "Garis Lydekker"], answer: "b" },
-        { q: "2. Contoh fauna endemik khas wilayah Peralihan (Wallacea) adalah...", options: ["Orangutan dan Harimau", "Komodo, Anoa, dan Babirusa", "Cenderawasih dan Kasuari", "Gajah dan Badak Bercula Satu"], answer: "b" },
-        { q: "3. Pelestarian flora dan fauna yang dilakukan langsung di dalam habitat aslinya (seperti Taman Nasional) disebut...", options: ["Konservasi Eksitu", "Konservasi Insitu", "Reklamasi", "Reboisasi"], answer: "b" }
+      "Kuis Materi 01: Biosfer & Keanekaragaman Hayati": [
+        { q: "1. Tingkat keanekaragaman hayati yang menunjukkan variasi antarspesies disebut …", options: ["Keanekaragaman gen", "Keanekaragaman jenis", "Keanekaragaman ekosistem", "Persebaran penduduk"], answer: "b", why: "Keanekaragaman jenis berarti variasi spesies makhluk hidup di suatu wilayah." },
+        { q: "2. Komodo merupakan contoh fauna khas wilayah …", options: ["Asiatis", "Peralihan", "Australis", "Kutub"], answer: "b", why: "Komodo hidup di wilayah peralihan atau Wallacea." },
+        { q: "3. Faktor berikut yang dapat memengaruhi persebaran flora adalah …", options: ["Curah hujan dan ketinggian", "Warna bendera", "Nama provinsi", "Zona waktu saja"], answer: "a", why: "Air dan suhu yang dipengaruhi ketinggian menentukan kondisi tumbuh tanaman." },
+        { q: "4. Garis khayal yang memisahkan fauna tipe Asiatis dengan fauna tipe Peralihan adalah …", options: ["Garis Weber", "Garis Wallace", "Garis Khatulistiwa", "Garis Bujur 120°"], answer: "b", why: "Garis Wallace memisahkan wilayah fauna Asiatis di barat dan Peralihan di tengah." }
       ],
-      "Simulasi Bab 3: Lingkungan Hidup & Kependudukan": [
-        { q: "1. Piramida penduduk yang memiliki bagian alas lebar karena angka kelahiran tinggi disebut piramida...", options: ["Konstruktif (Tua)", "Ekspansif (Muda)", "Stasioner (Dewasa)", "Inversi"], answer: "b" },
-        { q: "2. Tiga dimensi utama penyusun Indeks Pembangunan Manusia (IPM) meliputi...", options: ["Kesehatan, Pendidikan, dan Standar Hidup Layak", "Luas wilayah, Jumlah penduduk, dan Iklim", "Kelahiran, Kematian, dan Migrasi", "Pertanian, Pertambangan, dan Pariwisata"], answer: "a" }
+      "Kuis Materi 02: Sumber Daya Alam & Lingkungan": [
+        { q: "1. Manakah contoh sumber daya alam yang tidak dapat diperbarui dalam skala waktu manusia?", options: ["Sinar matahari", "Angin", "Minyak bumi", "Hutan yang direboisasi"], answer: "c", why: "Minyak bumi terbentuk melalui proses geologis yang sangat lama." },
+        { q: "2. Tindakan yang mendukung pelestarian sumber daya alam adalah …", options: ["Membuang limbah ke sungai", "Menebang tanpa pemulihan", "Reboisasi lahan rusak", "Menggunakan energi secara boros"], answer: "c", why: "Reboisasi membantu memulihkan tutupan vegetasi dan fungsi lingkungan." },
+        { q: "3. Sumber daya alam yang berasal dari makhluk hidup disebut …", options: ["SDA Nonhayati", "SDA Hayati", "SDA Mineral", "SDA Energi Fosil"], answer: "b", why: "SDA hayati berasal dari komponen biotik (tumbuhan dan hewan)." }
       ],
-      "Simulasi Bab 4: Mitigasi & Adaptasi Bencana": [
-        { q: "1. Kearifan lokal masyarakat Pulau Simeulue (Aceh) dalam mengenali tanda-tanda datangnya tsunami dikenal dengan istilah...", options: ["Subak", "Smong", "Sasi", "Tri Hita Karana"], answer: "b" },
-        { q: "2. Tindakan berlindung di bawah meja yang kokoh sambil melindungi kepala merupakan protokol keselamatan saat terjadi...", options: ["Banjir bandang", "Gempa bumi", "Kekeringan", "Kebakaran hutan"], answer: "b" }
+      "Kuis Materi 03: Dinamika Kependudukan": [
+        { q: "1. Jika kelahiran 120, kematian 40, imigrasi 30, dan emigrasi 10, pertumbuhan total penduduk adalah …", options: ["60 orang", "80 orang", "100 orang", "200 orang"], answer: "c", why: "(120 − 40) + (30 − 10) = 100 orang." },
+        { q: "2. Piramida penduduk yang memiliki bagian alas lebar karena angka kelahiran tinggi disebut piramida …", options: ["Konstruktif (Tua)", "Ekspansif (Muda)", "Stasioner (Dewasa)", "Terbalik"], answer: "b", why: "Piramida ekspansif menunjukkan dominasi penduduk usia muda akibat kelahiran tinggi." },
+        { q: "3. Tiga dimensi penyusun Indeks Pembangunan Manusia (IPM) meliputi …", options: ["Kesehatan, pendidikan, dan standar hidup layak", "Kelahiran, kematian, dan migrasi", "Luas wilayah, iklim, dan relief", "Pertanian, pertambangan, dan kelautan"], answer: "a", why: "IPM diukur dari aspek kesehatan, pendidikan, dan standar hidup layak." }
       ]
     };
 
@@ -1578,7 +1557,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
     };
     document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
     
-    // Handler Login Mode Guru Menggunakan Verifikasi Password
     document.getElementById("access-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("access-code").value.trim();
@@ -1641,12 +1619,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       };
     });
 
-    document.querySelectorAll(".accordion-trigger").forEach(btn => {
-      btn.onclick = () => {
-        document.getElementById(btn.dataset.accordion).classList.toggle("open");
-      };
-    });
-
     function updateProgress() {
       const checkboxes = document.querySelectorAll(".progress-check");
       const checked = document.querySelectorAll(".progress-check:checked");
@@ -1659,133 +1631,231 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
     }
     document.querySelectorAll(".progress-check").forEach(chk => chk.onchange = updateProgress);
 
-    // SYSTEM INTERAKTIF 30 SOAL TKA BAB 1
-    let m1TkaCurrentIdx = 0;
-    let m1TkaUserAnswers = new Array(m1TkaQuestions.length).fill(null);
+    // AKTIVITAS 01 (MGEO): JELAJAHI ZONA FAUNA
+    const faunaRegions = {
+      barat: {
+        title: "Indonesia Barat · Asiatis",
+        text: "Contoh: gajah Sumatra, harimau Sumatra, orangutan, dan badak Jawa. Banyak spesies memiliki kemiripan dengan fauna Asia karena hubungan geologi masa lampau dengan Paparan Sunda."
+      },
+      tengah: {
+        title: "Indonesia Tengah · Peralihan",
+        text: "Contoh: komodo, anoa, babirusa, dan maleo. Wilayah Wallacea memiliki banyak spesies endemik; laut dalam menjadi penghalang perpindahan fauna dari barat maupun timur."
+      },
+      timur: {
+        title: "Indonesia Timur · Australis",
+        text: "Contoh: cenderawasih, kasuari, dan kanguru pohon. Faunanya memiliki kemiripan dengan Australia, berkaitan dengan sejarah geologi Paparan Sahul."
+      }
+    };
 
-    function renderM1TkaQuestion() {
-      const qObj = m1TkaQuestions[m1TkaCurrentIdx];
-      document.getElementById("m1-tka-counter").textContent = `Soal ${m1TkaCurrentIdx + 1} / ${m1TkaQuestions.length}`;
-      document.getElementById("m1-tka-question-text").textContent = qObj.q;
-
-      const optsContainer = document.getElementById("m1-tka-options-container");
-      optsContainer.innerHTML = "";
-
-      const userAns = m1TkaUserAnswers[m1TkaCurrentIdx];
-
-      qObj.options.forEach((optText, optIdx) => {
-        const optLabel = document.createElement("label");
-        const isSelected = userAns === optIdx;
-        optLabel.className = `flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition ${isSelected ? 'bg-sky-50 border-sky-500 font-bold' : 'bg-white border-slate-200 hover:bg-slate-50'}`;
-        optLabel.innerHTML = `
-          <input type="radio" name="m1_tka_opt" value="${optIdx}" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-sky-600">
-          <span>${String.fromCharCode(65 + optIdx)}. ${optText}</span>
+    document.querySelectorAll(".zone-choice").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".zone-choice").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        const data = faunaRegions[btn.dataset.region];
+        document.getElementById("region-result").innerHTML = `
+          <strong class="text-base text-slate-900 block">${data.title}</strong>
+          <p class="text-sm text-slate-600 mt-1 leading-relaxed">${data.text}</p>
         `;
+      };
+    });
 
-        optLabel.querySelector("input").onchange = () => {
-          m1TkaUserAnswers[m1TkaCurrentIdx] = optIdx;
-          showM1TkaFeedback();
+    // AKTIVITAS 02 (MGEO): KELOMPOKKAN SUMBER DAYANYA
+    const resourceItems = [
+      { name: "Sinar matahari", answer: "terbarukan", why: "Energi matahari tersedia kembali secara alami dalam skala waktu manusia." },
+      { name: "Minyak bumi", answer: "tak-terbarukan", why: "Pembentukannya memerlukan waktu geologis yang sangat lama." },
+      { name: "Hutan", answer: "terbarukan", why: "Hutan dapat tumbuh kembali jika dikelola dan dipulihkan; penebangan berlebihan tetap dapat merusaknya." },
+      { name: "Batu bara", answer: "tak-terbarukan", why: "Cadangannya terbatas dan tidak terbentuk kembali dalam waktu singkat." }
+    ];
+    let resIdx = 0;
+    let resCorrect = 0;
+
+    function initResourceActivity() {
+      const answerBtns = document.querySelectorAll(".resource-answer-btn");
+      const nextBtn = document.getElementById("resource-next");
+      const fbEl = document.getElementById("resource-feedback");
+
+      function renderResourceStep() {
+        const done = resIdx >= resourceItems.length;
+        document.getElementById("resource-counter").textContent = done ? "AKTIVITAS SELESAI" : `CONTOH ${resIdx + 1} DARI ${resourceItems.length}`;
+        document.getElementById("resource-progress").style.width = `${(resIdx / resourceItems.length) * 100}%`;
+        document.getElementById("resource-name").textContent = done ? `Benar ${resCorrect} dari ${resourceItems.length}!` : resourceItems[resIdx].name;
+
+        answerBtns.forEach(b => {
+          b.classList.toggle("hidden", done);
+          b.disabled = false;
+        });
+
+        if (done) {
+          fbEl.textContent = "Ingat: sumber daya terbarukan pun tetap perlu dikelola dengan bijak.";
+          fbEl.className = "mt-3 text-sm font-bold text-teal-800";
+          nextBtn.classList.remove("hidden");
+          nextBtn.textContent = "Ulangi Aktivitas ↻";
+        } else {
+          fbEl.textContent = "";
+          nextBtn.classList.add("hidden");
+          nextBtn.textContent = "Contoh berikutnya →";
+        }
+      }
+
+      answerBtns.forEach(btn => {
+        btn.onclick = () => {
+          const item = resourceItems[resIdx];
+          const isOk = btn.dataset.answer === item.answer;
+          if (isOk) resCorrect++;
+          fbEl.textContent = `${isOk ? "Tepat!" : "Belum tepat."} ${item.why}`;
+          fbEl.className = `mt-3 text-sm font-bold ${isOk ? "text-emerald-700" : "text-rose-700"}`;
+          answerBtns.forEach(b => b.disabled = true);
+          nextBtn.classList.remove("hidden");
         };
-
-        optsContainer.appendChild(optLabel);
       });
 
-      showM1TkaFeedback();
+      nextBtn.onclick = () => {
+        if (resIdx >= resourceItems.length) {
+          resIdx = 0;
+          resCorrect = 0;
+        } else {
+          resIdx++;
+        }
+        renderResourceStep();
+      };
+
+      renderResourceStep();
     }
 
-    function showM1TkaFeedback() {
-      const qObj = m1TkaQuestions[m1TkaCurrentIdx];
-      const userAns = m1TkaUserAnswers[m1TkaCurrentIdx];
-      const fbBox = document.getElementById("m1-tka-feedback");
+    // AKTIVITAS 03 (MGEO): SIMULASI PERUBAHAN PENDUDUK
+    function updatePopulationCalc() {
+      const births = Math.max(0, Number(document.getElementById("births")?.value) || 0);
+      const deaths = Math.max(0, Number(document.getElementById("deaths")?.value) || 0);
+      const immigration = Math.max(0, Number(document.getElementById("immigration")?.value) || 0);
+      const emigration = Math.max(0, Number(document.getElementById("emigration")?.value) || 0);
 
-      if (userAns === null) {
-        fbBox.classList.add("hidden");
-        return;
-      }
+      const total = (births - deaths) + (immigration - emigration);
+      const resEl = document.getElementById("population-result");
+      const noteEl = document.getElementById("population-note");
+      if (!resEl || !noteEl) return;
 
-      fbBox.classList.remove("hidden");
-      if (userAns === qObj.answer) {
-        fbBox.className = "mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-900 leading-relaxed";
-        fbBox.innerHTML = `✓ <strong>Jawaban Tepat!</strong><br><span class="font-normal text-slate-700">${qObj.why}</span>`;
+      resEl.textContent = `${total > 0 ? "+" : ""}${total.toLocaleString("id-ID")} orang`;
+      if (total > 0) {
+        noteEl.textContent = "Jumlah penduduk bertambah dalam periode ini.";
+        noteEl.className = "text-sm font-bold text-emerald-700 mt-2";
+      } else if (total < 0) {
+        noteEl.textContent = "Jumlah penduduk berkurang dalam periode ini.";
+        noteEl.className = "text-sm font-bold text-rose-700 mt-2";
       } else {
-        fbBox.className = "mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-bold text-rose-900 leading-relaxed";
-        fbBox.innerHTML = `✕ <strong>Jawaban Kurang Tepat.</strong> Jawaban benar adalah <strong>${String.fromCharCode(65 + qObj.answer)}. ${qObj.options[qObj.answer]}</strong>.<br><span class="font-normal text-slate-700">${qObj.why}</span>`;
+        noteEl.textContent = "Jumlah penduduk tidak berubah dalam periode ini.";
+        noteEl.className = "text-sm font-bold text-slate-700 mt-2";
       }
     }
 
-    function initM1TkaQuiz() {
-      const btnPrev = document.getElementById("btn-m1-tka-prev");
-      const btnNext = document.getElementById("btn-m1-tka-next");
-      const btnRestart = document.getElementById("btn-m1-tka-restart");
+    ["births", "deaths", "immigration", "emigration"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", updatePopulationCalc);
+    });
+
+    // SISTEM KUIS LATIHAN INTERAKTIF PER MATERI (M1, M2, M3)
+    function setupChapterQuiz(prefix, questionsList) {
+      let currentIdx = 0;
+      const userAnswers = new Array(questionsList.length).fill(null);
+
+      const counterEl = document.getElementById(`${prefix}-quiz-counter`);
+      const qTextEl = document.getElementById(`${prefix}-quiz-question-text`);
+      const optsContainer = document.getElementById(`${prefix}-quiz-options-container`);
+      const fbBox = document.getElementById(`${prefix}-quiz-feedback`);
+      const quizBox = document.getElementById(`${prefix}-quiz-box`);
+      const resultCard = document.getElementById(`${prefix}-quiz-result-card`);
+      const scoreText = document.getElementById(`${prefix}-quiz-score-text`);
+      const btnPrev = document.getElementById(`btn-${prefix}-quiz-prev`);
+      const btnNext = document.getElementById(`btn-${prefix}-quiz-next`);
+      const btnRestart = document.getElementById(`btn-${prefix}-quiz-restart`);
+
+      function showFeedback() {
+        const qObj = questionsList[currentIdx];
+        const userAns = userAnswers[currentIdx];
+        if (userAns === null) {
+          fbBox.classList.add("hidden");
+          return;
+        }
+        fbBox.classList.remove("hidden");
+        if (userAns === qObj.answer) {
+          fbBox.className = "mt-4 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-900 leading-relaxed";
+          fbBox.innerHTML = `✓ <strong>Benar!</strong><br><span class="font-normal text-slate-700">${qObj.why}</span>`;
+        } else {
+          fbBox.className = "mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-bold text-rose-900 leading-relaxed";
+          fbBox.innerHTML = `✕ <strong>Belum tepat.</strong> Jawaban benar adalah <strong>${String.fromCharCode(65 + qObj.answer)}. ${qObj.options[qObj.answer]}</strong>.<br><span class="font-normal text-slate-700">${qObj.why}</span>`;
+        }
+      }
+
+      function renderQuestion() {
+        const qObj = questionsList[currentIdx];
+        counterEl.textContent = `Soal ${currentIdx + 1} / ${questionsList.length}`;
+        qTextEl.textContent = qObj.q;
+        optsContainer.innerHTML = "";
+        const userAns = userAnswers[currentIdx];
+
+        qObj.options.forEach((optText, optIdx) => {
+          const optLabel = document.createElement("label");
+          const isSelected = userAns === optIdx;
+          optLabel.className = `flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition ${isSelected ? 'bg-sky-50 border-sky-500 font-bold' : 'bg-white border-slate-200 hover:bg-slate-50'}`;
+          optLabel.innerHTML = `
+            <input type="radio" name="${prefix}_quiz_opt" value="${optIdx}" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-sky-600">
+            <span>${String.fromCharCode(65 + optIdx)}. ${optText}</span>
+          `;
+          optLabel.querySelector("input").onchange = () => {
+            userAnswers[currentIdx] = optIdx;
+            showFeedback();
+          };
+          optsContainer.appendChild(optLabel);
+        });
+
+        btnNext.textContent = currentIdx === questionsList.length - 1 ? "Selesai & Lihat Nilai ✓" : "Soal Berikutnya →";
+        showFeedback();
+      }
 
       btnPrev.onclick = () => {
-        if (m1TkaCurrentIdx > 0) {
-          m1TkaCurrentIdx--;
-          renderM1TkaQuestion();
+        if (currentIdx > 0) {
+          currentIdx--;
+          renderQuestion();
         }
       };
 
       btnNext.onclick = () => {
-        if (m1TkaCurrentIdx < m1TkaQuestions.length - 1) {
-          m1TkaCurrentIdx++;
-          renderM1TkaQuestion();
+        if (currentIdx < questionsList.length - 1) {
+          currentIdx++;
+          renderQuestion();
         } else {
           let correctCount = 0;
-          m1TkaUserAnswers.forEach((ans, idx) => {
-            if (ans === m1TkaQuestions[idx].answer) correctCount++;
+          userAnswers.forEach((ans, idx) => {
+            if (ans === questionsList[idx].answer) correctCount++;
           });
-          const score = Math.round((correctCount / m1TkaQuestions.length) * 100);
-
-          document.getElementById("m1-tka-quiz-box").classList.add("hidden");
-          document.getElementById("m1-tka-result-card").classList.remove("hidden");
-          document.getElementById("m1-tka-score-text").textContent = `Nilai: ${score} / 100 (${correctCount} dari 30 Soal Benar)`;
+          const score = Math.round((correctCount / questionsList.length) * 100);
+          quizBox.classList.add("hidden");
+          resultCard.classList.remove("hidden");
+          scoreText.textContent = `Nilai: ${score} / 100 (${correctCount} dari ${questionsList.length} Soal Benar)`;
         }
       };
 
       btnRestart.onclick = () => {
-        m1TkaCurrentIdx = 0;
-        m1TkaUserAnswers.fill(null);
-        document.getElementById("m1-tka-quiz-box").classList.remove("hidden");
-        document.getElementById("m1-tka-result-card").classList.add("hidden");
-        renderM1TkaQuestion();
+        currentIdx = 0;
+        userAnswers.fill(null);
+        quizBox.classList.remove("hidden");
+        resultCard.classList.add("hidden");
+        renderQuestion();
       };
 
-      renderM1TkaQuestion();
+      renderQuestion();
     }
 
-    // Kuis Analisis Demografi Bab 3
+    // Kuis Analisis Demografi Materi 03
     window.checkGeoMyth = function(isMyth) {
       const res = document.getElementById("geo-myth-result");
       if (isMyth) {
         res.textContent = "Jawaban Tepat! Bonus Demografi hanya menjadi peluang emas jika diiringi peningkatan kualitas pendidikan, kesehatan, dan penciptaan lapangan kerja.";
-        res.className = "mt-2 text-sm font-bold text-emerald-700";
+        res.className = "mt-2 text-xs font-bold text-emerald-700";
       } else {
         res.textContent = "Kurang Tepat. Tanpa SDM berkualitas dan lapangan kerja memadai, melimpahnya usia produktif justru dapat memicu pengangguran.";
-        res.className = "mt-2 text-sm font-bold text-rose-700";
+        res.className = "mt-2 text-xs font-bold text-rose-700";
       }
     };
-
-    // Protokol Mitigasi Bencana Bab 4
-    const disasterSelect = document.getElementById("disaster-select-input");
-    if (disasterSelect) {
-      disasterSelect.onchange = () => {
-        const val = disasterSelect.value;
-        const lbl = document.getElementById("disaster-protocol-label");
-        const protocols = {
-          gempa: "DROP, COVER, HOLD ON: Berlindung di bawah meja kokoh, lindungi kepala dari reruntuhan, jauhi kaca, dan segera menuju titik kumpul terbuka setelah guncangan mereda.",
-          tsunami: "EVAKUASI VERTIKAL / TINGGI: Jika berada di pesisir dan merasakan gempa kuat > 30 detik atau air laut surut mendadak, segera lari ke dataran tinggi (> 20 mdpl) tanpa menunggu sirine.",
-          erupsi: "HINDARI ZONA MERAH & GUNAKAN MASKER: Jauhi lembah sungai berhulu di puncak gunung (potensi lahar), gunakan masker N95 dan kacamata pelindung dari abu vulkanik.",
-          longsor: "WASPADA RETAKAN TANAH & HUJAN LEBAT: Segera mengungsi menjauhi lereng terjal apabila hujan deras turun berjam-jam dan muncul retakan tanah atau air mata air keruh."
-        };
-        if (!val) {
-          lbl.textContent = "Silakan pilih jenis bencana terlebih dahulu.";
-          lbl.className = "text-sm font-extrabold text-slate-700";
-        } else {
-          lbl.textContent = protocols[val];
-          lbl.className = "text-sm font-extrabold text-rose-700 leading-relaxed";
-        }
-      };
-    }
 
     document.getElementById("search-input").oninput = (e) => {
       const query = e.target.value.toLowerCase();
@@ -1797,7 +1867,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
     document.getElementById("btn-print-summary").onclick = () => window.print();
 
-    // INTERAKTIVITAS BAB 2: SIMULASI PENELUSURAN ZONA BIOGEOGRAFI
+    // SIMULASI PENELUSURAN ZONA BIOGEOGRAFI PER PULAU
     let simStep = -1;
     let selectedRegion = "Kalimantan";
 
@@ -1870,12 +1940,12 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       };
     }
 
-    // Matching Game Bab 2 (Istilah Biogeografi & Konservasi)
+    // Matching Game Biosfer & Konservasi
     const matchPairs = [
       ["Garis Wallace", "Garis khayal yang memisahkan fauna tipe Asiatis dan tipe Peralihan."],
       ["Garis Weber", "Garis khayal yang memisahkan fauna tipe Peralihan dan tipe Australis."],
       ["Satwa Endemik", "Spesies alami yang hanya ditemukan di wilayah geografis tertentu saja."],
-      ["Bioma Taiga", "Ekosistem hutan berdaun jarum (konifer) di wilayah lintang tinggi."],
+      ["Biosfer", "Lapisan bagian bumi tempat makhluk hidup berada dan berinteraksi."],
       ["Konservasi Insitu", "Pelestarian makhluk hidup langsung di dalam habitat aslinya."],
       ["Konservasi Eksitu", "Pelestarian makhluk hidup di luar habitat aslinya seperti Kebun Raya."]
     ];
@@ -1935,7 +2005,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
             selectedTermIdx = null;
             document.getElementById("match-count-badge").textContent = `${matchedSet.size} / 6 Terpasang`;
-            msg.textContent = matchedSet.size === 6 ? "Luar Biasa! Semua istilah Geografi Bab 2 berhasil terpasang sempurna! 🎉" : "Jawaban Tepat! Silakan pilih istilah berikutnya.";
+            msg.textContent = matchedSet.size === 6 ? "Luar Biasa! Semua istilah Biosfer berhasil terpasang sempurna! 🎉" : "Jawaban Tepat! Silakan pilih istilah berikutnya.";
           } else {
             btn.classList.add("wrong");
             setTimeout(() => btn.classList.remove("wrong"), 600);
@@ -1957,7 +2027,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       }
     }
 
-    // KAMERA DEPAN & PENGAWASAN SIMULASI
+    // KAMERA DEPAN & PENGAWASAN KUIS EVALUASI
     async function startFrontCamera() {
       if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
         alert("Fitur pengawasan kamera memerlukan koneksi HTTPS aman. Silakan akses aplikasi melalui tautan https://");
@@ -1974,7 +2044,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         videoEl.classList.remove("hidden");
       } catch (err) {
         if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
-          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan simulasi.");
+          alert("Akses kamera ditolak! Izinkan akses kamera depan di browser Anda untuk melanjutkan kuis.");
         } else {
           alert("Kamera tidak ditemukan atau sedang digunakan aplikasi lain: " + err.message);
         }
@@ -2001,7 +2071,6 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       document.getElementById("quiz-lock-overlay").classList.remove("hidden");
     }
 
-    // Handler Buka Layar Simulasi Terkunci Menggunakan Password Guru
     document.getElementById("quiz-unlock-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("quiz-unlock-pin").value.trim();
@@ -2015,7 +2084,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         document.getElementById("quiz-lock-overlay").classList.add("hidden");
         document.getElementById("quiz-unlock-pin").value = "";
         msgEl.textContent = "";
-        showToast("Layar simulasi berhasil dibuka!");
+        showToast("Layar kuis berhasil dibuka!");
       } else {
         msgEl.textContent = "Password Guru salah!";
       }
@@ -2048,16 +2117,16 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
     document.addEventListener("contextmenu", (e) => {
       if (isQuizActive) {
         e.preventDefault();
-        lockSimulasiScreen("Klik kanan dilarang selama simulasi berlangsung!");
+        lockSimulasiScreen("Klik kanan dilarang selama kuis berlangsung!");
       }
     });
 
-    // MEMULAI SIMULASI
+    // MEMULAI KUIS EVALUASI
     const btnStartQuiz = document.getElementById("btn-start-quiz");
     if (btnStartQuiz) {
       btnStartQuiz.onclick = async () => {
         const titleSelect = document.getElementById("simulasi-target-select").value;
-        const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Posisi Strategis & Potensi SDA"];
+        const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Kuis Evaluasi Terpadu (Materi 01 - 03)"];
 
         try {
           await startFrontCamera();
@@ -2098,7 +2167,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
           document.getElementById("quiz-timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
           if (--duration < 0) {
             clearInterval(quizTimerInterval);
-            alert("Waktu simulasi telah habis! Jawabanmu dikirim otomatis.");
+            alert("Waktu kuis telah habis! Jawabanmu dikirim otomatis.");
             document.getElementById("quiz-form").requestSubmit();
           }
         }, 1000);
@@ -2112,13 +2181,25 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       isQuizActive = false;
 
       const titleSelect = document.getElementById("simulasi-target-select").value;
-      const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Simulasi Bab 1: Posisi Strategis & Potensi SDA"];
+      const questions = simulasiDatabase[titleSelect] || simulasiDatabase["Kuis Evaluasi Terpadu (Materi 01 - 03)"];
       
       let correct = 0;
       const formData = new FormData(document.getElementById("quiz-form"));
+      const reviewContainer = document.getElementById("quiz-review-container");
+      reviewContainer.innerHTML = "";
 
       questions.forEach((qObj, idx) => {
-        if (formData.get(`sq_${idx}`) === qObj.answer) correct++;
+        const picked = formData.get(`sq_${idx}`);
+        const isRight = picked === qObj.answer;
+        if (isRight) correct++;
+
+        const revItem = document.createElement("div");
+        revItem.className = `p-3.5 rounded-xl border text-xs ${isRight ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'}`;
+        revItem.innerHTML = `
+          <p class="font-bold">${qObj.q}</p>
+          <p class="mt-1"><strong>${isRight ? 'Benar!' : 'Belum tepat.'}</strong> ${qObj.why || ''}</p>
+        `;
+        reviewContainer.appendChild(revItem);
       });
 
       const score = Math.round((correct / questions.length) * 100);
@@ -2129,7 +2210,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       document.getElementById("quiz-form").classList.add("hidden");
       document.getElementById("quiz-timer-box").classList.add("hidden");
       document.getElementById("quiz-result-box").classList.remove("hidden");
-      document.getElementById("quiz-score-display").textContent = `${score} / 100`;
+      document.getElementById("quiz-score-display").textContent = `${score} / 100 (${correct} / ${questions.length} Benar)`;
 
       try {
         await addDoc(collection(db, "ulangan_harian"), {
@@ -2140,7 +2221,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
           timeString: wibTime,
           timestamp: new Date()
         });
-        showToast("Hasil simulasi berhasil tersimpan!");
+        showToast("Hasil kuis berhasil tersimpan!");
       } catch (err) {
         showToast("Gagal menyimpan hasil: " + err.message);
       }
@@ -2219,10 +2300,9 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       }
     }
 
-    document.getElementById("save-m1-btn").onclick = () => saveStudentAnswer("Bab 1", "module1-notes");
-    document.getElementById("save-m2-btn").onclick = () => saveStudentAnswer("Bab 2", "module2-notes");
-    document.getElementById("save-m3-btn").onclick = () => saveStudentAnswer("Bab 3", "module3-notes");
-    document.getElementById("save-m4-btn").onclick = () => saveStudentAnswer("Bab 4", "module4-notes");
+    document.getElementById("save-m1-btn").onclick = () => saveStudentAnswer("Materi 01: Biosfer", "module1-notes");
+    document.getElementById("save-m2-btn").onclick = () => saveStudentAnswer("Materi 02: Sumber Daya Alam", "module2-notes");
+    document.getElementById("save-m3-btn").onclick = () => saveStudentAnswer("Materi 03: Kependudukan", "module3-notes");
 
     // TAMBAH MATERI & VIDEO (GURU)
     document.getElementById("material-form").onsubmit = async (e) => {
@@ -2315,9 +2395,9 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         const list = [];
         snap.forEach(d => {
           const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Simulasi": data.simulasiTitle || "Simulasi", "Nilai": data.score, "Waktu": data.timeString || "" });
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Judul Kuis": data.simulasiTitle || "Kuis", "Nilai": data.score, "Waktu": data.timeString || "" });
         });
-        exportToCSV(list, "Rekap_Nilai_Simulasi_Geografi_11.csv");
+        exportToCSV(list, "Rekap_Nilai_Kuis_Geografi_11.csv");
       } catch (e) {
         showToast("Gagal mengunduh data: " + e.message);
       }
@@ -2343,7 +2423,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         const list = [];
         snap.forEach(d => {
           const data = d.data();
-          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Bab": data.module, "Catatan Refleksi": data.notes });
+          list.push({ "Nama Siswa": data.studentName, "Kelas": data.studentClass, "Materi": data.module, "Catatan Refleksi": data.notes });
         });
         exportToCSV(list, "Rekap_Refleksi_Geografi_11.csv");
       } catch (e) {
@@ -2380,13 +2460,13 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         });
       }, (err) => console.warn("Firestore error (absen_harian):", err));
 
-      // 2. Rekap Nilai Simulasi
+      // 2. Rekap Nilai Kuis Evaluasi
       onSnapshot(collection(db, "ulangan_harian"), (snapshot) => {
         const container = document.getElementById("rekap-ulangan-container");
         if (!container) return;
         container.innerHTML = "";
         if (snapshot.empty) {
-          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil simulasi siswa.</p>';
+          container.innerHTML = '<p class="text-sm text-slate-500">Belum ada hasil kuis siswa.</p>';
           return;
         }
         snapshot.forEach((docSnap) => {
@@ -2397,7 +2477,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
             <div>
               <div class="flex items-center gap-2">
                 <span class="font-extrabold text-slate-900">${data.studentName} (${data.studentClass})</span>
-                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Simulasi'}</span>
+                <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">${data.simulasiTitle || 'Kuis Evaluasi'}</span>
               </div>
               <p class="text-xs text-slate-400 mt-1">Waktu: ${data.timeString || ''}</p>
             </div>
@@ -2638,7 +2718,11 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       checkStudentIdentity();
       listenFirebaseData();
       updateProgress();
-      initM1TkaQuiz();
+      initResourceActivity();
+      updatePopulationCalc();
+      setupChapterQuiz("m1", quizBanks.m1);
+      setupChapterQuiz("m2", quizBanks.m2);
+      setupChapterQuiz("m3", quizBanks.m3);
       initBiogeographyTracing();
       renderMatchingGame();
     };
