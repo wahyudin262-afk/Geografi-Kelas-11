@@ -161,7 +161,7 @@
             <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-6">
               <article class="card">
                 <h3 class="text-xl font-extrabold">A. Konsep Dasar Posisi Strategis Indonesia</h3>
-                <p class="mt-3 leading-relaxed">Indonesia berada pada posisi silang dunia (*cross position*) yang menghubungkan dua benua dan dua samudra, menjadikannya jalur pelayaran internasional yang sangat vital.</p>
+                <p class="mt-3 leading-relaxed">Indonesia berada pada posisi silang dunia (<em>cross position</em>) yang menghubungkan dua benua dan dua samudra, menjadikannya jalur pelayaran internasional yang sangat vital.</p>
                 <div class="mt-4 space-y-3">
                   <div class="rounded-2xl border border-sky-100">
                     <button type="button" class="accordion-trigger p-4 font-bold" data-accordion="m1-letak-astro">
@@ -176,7 +176,7 @@
                       2. Letak Geografis & Geologis<i data-lucide="chevron-down" class="w-5 h-5"></i>
                     </button>
                     <div id="m1-letak-geo" class="accordion-panel px-4 pb-4 text-sm text-slate-700">
-                      Secara geografis diapit Benua Asia dan Australia serta Samudra Hindia dan Pasifik. Secara geologis berada di pertemuan tiga lempeng tektonik aktif (Eurasia, Indo-Australia, Pasifik) yang membentuk rangkaian pegunungan *Ring of Fire*.
+                      Secara geografis diapit Benua Asia dan Australia serta Samudra Hindia dan Pasifik. Secara geologis berada di pertemuan tiga lempeng tektonik aktif (Eurasia, Indo-Australia, Pasifik) yang membentuk rangkaian pegunungan <em>Ring of Fire</em>.
                     </div>
                   </div>
                   <div class="rounded-2xl border border-violet-100">
@@ -415,7 +415,7 @@
                     <span class="text-xs bg-violet-100 text-violet-800 font-bold px-2.5 py-1 rounded-full">Fungsi: Persentase / Proporsi</span>
                   </div>
                   <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                    Memperlihatkan perbandingan proporsi luas wilayah perairan laut dan daratan NKRI sebagai negara kepulauan (*archipelagic state*).
+                    Memperlihatkan perbandingan proporsi luas wilayah perairan laut dan daratan NKRI sebagai negara kepulauan (<em>archipelagic state</em>).
                   </p>
 
                   <div class="bg-slate-900 rounded-xl p-4 text-white flex flex-col md:flex-row items-center justify-around gap-4">
@@ -536,7 +536,7 @@
                 </div>
                 <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-sm">
                   <strong class="text-emerald-900 block mb-1 flex items-center gap-2"><i data-lucide="mountain" class="w-4 h-4"></i> 2. Faktor Edafik (Tanah) & Fisiografis</strong>
-                  <p class="text-slate-700"><strong>Edafik</strong> berkaitan dengan kesuburan, tekstur, dan pH tanah. <strong>Fisiografis</strong> berkaitan dengan ketinggian tempat (relief) yang memengaruhi penurunan suhu (*lapse rate*).</p>
+                  <p class="text-slate-700"><strong>Edafik</strong> berkaitan dengan kesuburan, tekstur, dan pH tanah. <strong>Fisiografis</strong> berkaitan dengan ketinggian tempat (relief) yang memengaruhi penurunan suhu (<em>lapse rate</em>).</p>
                 </div>
               </div>
               <div class="codebox">Ringkasan Hukum Klimatologi Junghuhn (Berdasarkan Ketinggian Tempat):
@@ -566,7 +566,7 @@
                 </div>
                 <div class="bg-sky-50 p-4 rounded-xl border border-sky-100">
                   <strong class="text-sky-900 block mb-1">03. Taiga & Tundra</strong>
-                  <span class="text-xs text-slate-600">Taiga didominasi hutan konifer/pinus di lintang tinggi; Tundra berada di lingkar kutub dengan vegetasi lumut kerak (*lichen*).</span>
+                  <span class="text-xs text-slate-600">Taiga didominasi hutan konifer/pinus di lintang tinggi; Tundra berada di lingkar kutub dengan vegetasi lumut kerak (<em>lichen</em>).</span>
                 </div>
               </div>
               <div class="codebox">Pola Gradien Bioma dari Khatulistiwa menuju Kutub:
@@ -609,7 +609,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
                       <td class="p-2.5 font-bold bg-slate-50">Karakteristik Fauna</td>
                       <td class="p-2.5">Mamalia bertubuh besar, primata, ikan air tawar beragam</td>
                       <td class="p-2.5">Banyak satwa endemik unik (campuran ciri Asia & Australia)</td>
-                      <td class="p-2.5">Mamalia berkantung (*marsupial*), burung berbulu indah</td>
+                      <td class="p-2.5">Mamalia berkantung (<em>marsupial</em>), burung berbulu indah</td>
                     </tr>
                     <tr>
                       <td class="p-2.5 font-bold bg-slate-50">Contoh Fauna Khas</td>
@@ -1205,7 +1205,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       </div>
     </div>
 
-    <!-- Overlay NIP Guru Akses Mode Guru -->
+    <!-- Overlay Password Guru Akses Mode Guru -->
     <div id="access-overlay" class="access-overlay hidden">
       <div class="access-dialog">
         <h2 class="text-2xl font-extrabold">Akses Mode Guru</h2>
@@ -1246,26 +1246,29 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
 
   <!-- FIREBASE INTEGRATION SCRIPT -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
     import { 
       getFirestore, collection, addDoc, deleteDoc, doc, updateDoc, 
       onSnapshot, getDocs, getDoc, setDoc 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-    // =========================================================================
-    // GANTI KONFIGURASI DI BAWAH INI DENGAN KONFIGURASI PROYEK FIREBASE BARU ANDA
-    // =========================================================================
+    // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "GANTI_DENGAN_API_KEY_FIREBASE_BARU",
-      authDomain: "geografi-sma-11.firebaseapp.com",
-      databaseURL: "https://geografi-sma-11-default-rtdb.firebaseio.com",
-      projectId: "geografi-sma-11",
-      storageBucket: "geografi-sma-11.firebasestorage.app",
-      messagingSenderId: "000000000000",
-      appId: "1:000000000000:web:000000000000000000"
+      apiKey: "AIzaSyC2bTEFygslbKNnB7REr89VV8wc5ICd7Cs",
+      authDomain: "geografixi.firebaseapp.com",
+      databaseURL: "https://geografixi-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "geografixi",
+      storageBucket: "geografixi.firebasestorage.app",
+      messagingSenderId: "393237203499",
+      appId: "1:393237203499:web:ebb29b6a5b0716e458f86e",
+      measurementId: "G-8RQYYN478G"
     };
 
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
     let isTeacher = false;
@@ -1274,28 +1277,28 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
     let quizLocked = false;
     let webcamStream = null;
 
-    // FUNGSI VERIFIKASI NIP/PASSWORD GURU VIA FIREBASE FIRESTORE
+    // FUNGSI VERIFIKASI PASSWORD GURU VIA FIREBASE FIRESTORE
     async function verifyTeacherNIP(inputNIP) {
       const configRef = doc(db, "config", "teacher_access");
       try {
         const configSnap = await getDoc(configRef);
-        if (configSnap.exists()) {
+        if (configSnap.exists() && configSnap.data().nip && configSnap.data().nip !== "199306222025211016") {
           return configSnap.data().nip === inputNIP;
         } else {
           try {
             await setDoc(configRef, { 
-              nip: "199306222025211016",
+              nip: "ramayanti romalita",
               role: "Guru Utama",
               updatedAt: new Date()
             });
           } catch (e) {
             console.warn("Gagal membuat config di Firestore:", e);
           }
-          return inputNIP === "199306222025211016";
+          return inputNIP === "ramayanti romalita";
         }
       } catch (error) {
-        console.warn("Gagal koneksi verifikasi NIP Firestore:", error);
-        return inputNIP === "199306222025211016";
+        console.warn("Gagal koneksi verifikasi Password Firestore:", error);
+        return inputNIP === "ramayanti romalita";
       }
     }
 
@@ -1556,7 +1559,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
         });
         showToast("Absen harian berhasil dicatat!");
       } catch (err) {
-        showToast("Absen tersimpan lokal (cek konfigurasi Firebase): " + err.message);
+        showToast("Gagal menyimpan absen: " + err.message);
       }
     };
 
@@ -1566,7 +1569,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       document.getElementById("student-modal").classList.remove("hidden");
     };
 
-    // Mode Switcher & Otentikasi NIP Guru
+    // Mode Switcher & Otentikasi Password Guru
     document.getElementById("student-mode-button").onclick = () => switchMode("student");
     document.getElementById("teacher-mode-button").onclick = () => {
       document.getElementById("access-code").value = "";
@@ -1575,7 +1578,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
     };
     document.getElementById("access-cancel").onclick = () => document.getElementById("access-overlay").classList.add("hidden");
     
-    // Handler Login Mode Guru Menggunakan Verifikasi NIP
+    // Handler Login Mode Guru Menggunakan Verifikasi Password
     document.getElementById("access-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("access-code").value.trim();
@@ -1998,7 +2001,7 @@ Hutan Hujan Tropis → Hutan Gugur / Sabana → Stepa / Gurun → Taiga (Konifer
       document.getElementById("quiz-lock-overlay").classList.remove("hidden");
     }
 
-    // Handler Buka Layar Simulasi Terkunci Menggunakan NIP Guru
+    // Handler Buka Layar Simulasi Terkunci Menggunakan Password Guru
     document.getElementById("quiz-unlock-form").onsubmit = async (e) => {
       e.preventDefault();
       const inputNIP = document.getElementById("quiz-unlock-pin").value.trim();
